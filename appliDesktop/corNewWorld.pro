@@ -15,12 +15,15 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     dialogconnect.cpp \
-    mainwindow2.cpp
+    mainwindow2.cpp \
+    dialogaddproduct.cpp
 
 HEADERS  += mainwindow.h \
     dialogconnect.h \
-    mainwindow2.h
+    mainwindow2.h \
+    dialogaddproduct.h
 
 FORMS    += mainwindow.ui \
     dialogconnect.ui \
-    mainwindow2.ui
+    mainwindow2.ui \
+    dialogaddproduct.ui

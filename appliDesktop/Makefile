@@ -48,16 +48,20 @@ OBJECTS_DIR   = ./
 SOURCES       = main.cpp \
 		mainwindow.cpp \
 		dialogconnect.cpp \
-		mainwindow2.cpp moc_mainwindow.cpp \
+		mainwindow2.cpp \
+		dialogaddproduct.cpp moc_mainwindow.cpp \
 		moc_dialogconnect.cpp \
-		moc_mainwindow2.cpp
+		moc_mainwindow2.cpp \
+		moc_dialogaddproduct.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		dialogconnect.o \
 		mainwindow2.o \
+		dialogaddproduct.o \
 		moc_mainwindow.o \
 		moc_dialogconnect.o \
-		moc_mainwindow2.o
+		moc_mainwindow2.o \
+		moc_dialogaddproduct.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/shell-unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
@@ -121,7 +125,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		corNewWorld.pro main.cpp \
 		mainwindow.cpp \
 		dialogconnect.cpp \
-		mainwindow2.cpp
+		mainwindow2.cpp \
+		dialogaddproduct.cpp
 QMAKE_TARGET  = corNewWorld
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = corNewWorld
@@ -151,7 +156,7 @@ first: all
 
 all: Makefile $(TARGET)
 
-$(TARGET): ui_mainwindow.h ui_dialogconnect.h ui_mainwindow2.h $(OBJECTS)  
+$(TARGET): ui_mainwindow.h ui_dialogconnect.h ui_mainwindow2.h ui_dialogaddproduct.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: corNewWorld.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -292,7 +297,7 @@ qmake_all: FORCE
 
 dist: 
 	@test -d .tmp/corNewWorld1.0.0 || mkdir -p .tmp/corNewWorld1.0.0
-	$(COPY_FILE) --parents $(DIST) .tmp/corNewWorld1.0.0/ && $(COPY_FILE) --parents mainwindow.h dialogconnect.h mainwindow2.h .tmp/corNewWorld1.0.0/ && $(COPY_FILE) --parents main.cpp mainwindow.cpp dialogconnect.cpp mainwindow2.cpp .tmp/corNewWorld1.0.0/ && $(COPY_FILE) --parents mainwindow.ui dialogconnect.ui mainwindow2.ui .tmp/corNewWorld1.0.0/ && (cd `dirname .tmp/corNewWorld1.0.0` && $(TAR) corNewWorld1.0.0.tar corNewWorld1.0.0 && $(COMPRESS) corNewWorld1.0.0.tar) && $(MOVE) `dirname .tmp/corNewWorld1.0.0`/corNewWorld1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/corNewWorld1.0.0
+	$(COPY_FILE) --parents $(DIST) .tmp/corNewWorld1.0.0/ && $(COPY_FILE) --parents mainwindow.h dialogconnect.h mainwindow2.h dialogaddproduct.h .tmp/corNewWorld1.0.0/ && $(COPY_FILE) --parents main.cpp mainwindow.cpp dialogconnect.cpp mainwindow2.cpp dialogaddproduct.cpp .tmp/corNewWorld1.0.0/ && $(COPY_FILE) --parents mainwindow.ui dialogconnect.ui mainwindow2.ui dialogaddproduct.ui .tmp/corNewWorld1.0.0/ && (cd `dirname .tmp/corNewWorld1.0.0` && $(TAR) corNewWorld1.0.0.tar corNewWorld1.0.0 && $(COMPRESS) corNewWorld1.0.0.tar) && $(MOVE) `dirname .tmp/corNewWorld1.0.0`/corNewWorld1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/corNewWorld1.0.0
 
 
 clean:compiler_clean 
@@ -315,9 +320,9 @@ check: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_dialogconnect.cpp moc_mainwindow2.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_dialogconnect.cpp moc_mainwindow2.cpp moc_dialogaddproduct.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_dialogconnect.cpp moc_mainwindow2.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_dialogconnect.cpp moc_mainwindow2.cpp moc_dialogaddproduct.cpp
 moc_mainwindow.cpp: mainwindow.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/akhasanov/qtDossiers/corNewWorld/corNewWorld -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/4.7 -I/usr/include/c++/4.7/x86_64-linux-gnu -I/usr/include/c++/4.7/backward -I/usr/lib/gcc/x86_64-linux-gnu/4.7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/4.7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include mainwindow.h -o moc_mainwindow.cpp
 
@@ -327,11 +332,14 @@ moc_dialogconnect.cpp: dialogconnect.h
 moc_mainwindow2.cpp: mainwindow2.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/akhasanov/qtDossiers/corNewWorld/corNewWorld -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/4.7 -I/usr/include/c++/4.7/x86_64-linux-gnu -I/usr/include/c++/4.7/backward -I/usr/lib/gcc/x86_64-linux-gnu/4.7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/4.7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include mainwindow2.h -o moc_mainwindow2.cpp
 
+moc_dialogaddproduct.cpp: dialogaddproduct.h
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/akhasanov/qtDossiers/corNewWorld/corNewWorld -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/4.7 -I/usr/include/c++/4.7/x86_64-linux-gnu -I/usr/include/c++/4.7/backward -I/usr/lib/gcc/x86_64-linux-gnu/4.7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/4.7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include dialogaddproduct.h -o moc_dialogaddproduct.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_dialogconnect.h ui_mainwindow2.h
+compiler_uic_make_all: ui_mainwindow.h ui_dialogconnect.h ui_mainwindow2.h ui_dialogaddproduct.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_dialogconnect.h ui_mainwindow2.h
+	-$(DEL_FILE) ui_mainwindow.h ui_dialogconnect.h ui_mainwindow2.h ui_dialogaddproduct.h
 ui_mainwindow.h: mainwindow.ui
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic mainwindow.ui -o ui_mainwindow.h
 
@@ -340,6 +348,9 @@ ui_dialogconnect.h: dialogconnect.ui
 
 ui_mainwindow2.h: mainwindow2.ui
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic mainwindow2.ui -o ui_mainwindow2.h
+
+ui_dialogaddproduct.h: dialogaddproduct.ui
+	/usr/lib/x86_64-linux-gnu/qt5/bin/uic dialogaddproduct.ui -o ui_dialogaddproduct.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -360,7 +371,8 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		ui_mainwindow.h \
 		mainwindow2.h \
 		ui_mainwindow2.h \
-		dialogconnect.h
+		dialogconnect.h \
+		dialogaddproduct.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
 dialogconnect.o: dialogconnect.cpp dialogconnect.h \
@@ -372,6 +384,10 @@ mainwindow2.o: mainwindow2.cpp mainwindow2.h \
 		dialogconnect.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow2.o mainwindow2.cpp
 
+dialogaddproduct.o: dialogaddproduct.cpp dialogaddproduct.h \
+		ui_dialogaddproduct.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dialogaddproduct.o dialogaddproduct.cpp
+
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
 
@@ -380,6 +396,9 @@ moc_dialogconnect.o: moc_dialogconnect.cpp
 
 moc_mainwindow2.o: moc_mainwindow2.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow2.o moc_mainwindow2.cpp
+
+moc_dialogaddproduct.o: moc_dialogaddproduct.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_dialogaddproduct.o moc_dialogaddproduct.cpp
 
 ####### Install
 

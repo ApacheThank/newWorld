@@ -44,27 +44,8 @@ void MainWindow2::loadProducers()
                 ui->tableWidgetListProducers->setRowCount(nbLigne+1);
                 ui->tableWidgetListProducers->setItem(nbLigne,noField,mesTables);
                 qDebug()<<producteurAController;
-                if(producteurAController==0){
-                         ui->tableWidgetListToControl->setColumnCount(fields.count());
-                         // on donne le nom de colonne
-                         ui->tableWidgetListToControl->setHorizontalHeaderItem(noField,new QTableWidgetItem(fields.fieldName(noField)));
-                         QString lesTables=maRequete.value(noField).toString();
-                         qDebug()<<lesTables;
-                         QTableWidgetItem *mesTables = new QTableWidgetItem(lesTables);
-                         ui->tableWidgetListToControl->setRowCount(nbLigne+1);
-                         ui->tableWidgetListToControl->setItem(nbLigne,noField,mesTables);
-                }
-                if(producteurAController==0 && !(producteurAValider.isNull())){
-                    ui->tableWidgetListToValid->setColumnCount(fields.count());
-                    // on donne le nom de colonne
-                    ui->tableWidgetListToValid->setHorizontalHeaderItem(noField,new QTableWidgetItem(fields.fieldName(noField)));
-                    QString lesTables=maRequete.value(noField).toString();
-                    qDebug()<<lesTables;
-                    QTableWidgetItem *mesTables = new QTableWidgetItem(lesTables);
-                    ui->tableWidgetListToValid->setRowCount(nbLigne+1);
-                    ui->tableWidgetListToValid->setItem(nbLigne,noField,mesTables);
-                }
-                }
+
+        }
                 //on passe à la ligne suivante
                 nbLigne++;
    }

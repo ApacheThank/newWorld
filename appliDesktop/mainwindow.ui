@@ -50,111 +50,12 @@
           <item>
            <widget class="QTabWidget" name="tabWidget">
             <property name="currentIndex">
-             <number>0</number>
+             <number>2</number>
             </property>
             <widget class="QWidget" name="tab">
              <attribute name="title">
-              <string>Controlleurs</string>
+              <string>Controllers</string>
              </attribute>
-             <widget class="QWidget" name="formLayoutWidget">
-              <property name="geometry">
-               <rect>
-                <x>10</x>
-                <y>20</y>
-                <width>321</width>
-                <height>351</height>
-               </rect>
-              </property>
-              <layout class="QFormLayout" name="formLayout">
-               <item row="0" column="0">
-                <widget class="QLabel" name="label">
-                 <property name="text">
-                  <string>First name</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="1">
-                <widget class="QLineEdit" name="lineEditFirstName"/>
-               </item>
-               <item row="3" column="0">
-                <widget class="QLabel" name="label_4">
-                 <property name="text">
-                  <string>City</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="1">
-                <widget class="QLineEdit" name="lineEditCity"/>
-               </item>
-               <item row="4" column="0">
-                <widget class="QLabel" name="label_5">
-                 <property name="text">
-                  <string>ZIP code</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="4" column="1">
-                <widget class="QLineEdit" name="lineEditZipCode"/>
-               </item>
-               <item row="5" column="0">
-                <widget class="QLabel" name="label_6">
-                 <property name="text">
-                  <string>N° phone         </string>
-                 </property>
-                </widget>
-               </item>
-               <item row="5" column="1">
-                <widget class="QLineEdit" name="lineEditPhoneNumber"/>
-               </item>
-               <item row="6" column="0">
-                <widget class="QLabel" name="label_7">
-                 <property name="text">
-                  <string>Email</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="label_2">
-                 <property name="text">
-                  <string>Last name</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="0">
-                <widget class="QLabel" name="label_3">
-                 <property name="text">
-                  <string>Street</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="1">
-                <widget class="QLineEdit" name="lineEditLastName"/>
-               </item>
-               <item row="2" column="1">
-                <widget class="QLineEdit" name="lineEditStreet"/>
-               </item>
-               <item row="6" column="1">
-                <widget class="QLineEdit" name="lineEditEmail"/>
-               </item>
-               <item row="8" column="1">
-                <widget class="QPushButton" name="pushButtonAddController">
-                 <property name="text">
-                  <string>Add</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="7" column="1">
-                <widget class="QLineEdit" name="lineEditSSN"/>
-               </item>
-               <item row="7" column="0">
-                <widget class="QLabel" name="label_12">
-                 <property name="text">
-                  <string>Social Security number</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
              <widget class="QLabel" name="label_8">
               <property name="geometry">
                <rect>
@@ -220,14 +121,116 @@
                </item>
               </layout>
              </widget>
+             <widget class="QWidget" name="layoutWidget_2">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>10</y>
+                <width>309</width>
+                <height>345</height>
+               </rect>
+              </property>
+              <layout class="QFormLayout" name="formLayout_2">
+               <property name="fieldGrowthPolicy">
+                <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+               </property>
+               <item row="0" column="0">
+                <widget class="QLabel" name="labelLastName">
+                 <property name="text">
+                  <string>Last name</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLineEdit" name="lineEditLastName"/>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="labelFirstName">
+                 <property name="text">
+                  <string>First name</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QLineEdit" name="lineEditFirstName"/>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="labelStreet">
+                 <property name="text">
+                  <string>Street</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLineEdit" name="lineEditStreet"/>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="labelCity">
+                 <property name="text">
+                  <string>City</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QLineEdit" name="lineEditCity"/>
+               </item>
+               <item row="4" column="0">
+                <widget class="QLabel" name="labelZipCode">
+                 <property name="text">
+                  <string>ZIP code</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="1">
+                <widget class="QLineEdit" name="lineEditZipCode"/>
+               </item>
+               <item row="5" column="0">
+                <widget class="QLabel" name="labelPhoneNumber">
+                 <property name="text">
+                  <string>N° phone         </string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="1">
+                <widget class="QLineEdit" name="lineEditPhoneNumber"/>
+               </item>
+               <item row="6" column="0">
+                <widget class="QLabel" name="labelMail">
+                 <property name="text">
+                  <string>Email</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="1">
+                <widget class="QLineEdit" name="lineEditEmail"/>
+               </item>
+               <item row="7" column="0">
+                <widget class="QLabel" name="labelSSN">
+                 <property name="text">
+                  <string>Social Security Number</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="1">
+                <widget class="QLineEdit" name="lineEditSSN"/>
+               </item>
+               <item row="8" column="1">
+                <widget class="QPushButton" name="pushButtonAddController">
+                 <property name="text">
+                  <string>Add</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
             </widget>
             <widget class="QWidget" name="tab_3">
              <attribute name="title">
-              <string>Producteurs</string>
+              <string>Producers</string>
              </attribute>
-             <layout class="QVBoxLayout" name="verticalLayout_7">
+             <layout class="QVBoxLayout" name="verticalLayout_6">
               <item>
-               <layout class="QVBoxLayout" name="verticalLayout_6">
+               <layout class="QVBoxLayout" name="verticalLayout_5">
                 <item>
                  <layout class="QHBoxLayout" name="horizontalLayout_5">
                   <item>
@@ -253,21 +256,65 @@
                  </layout>
                 </item>
                 <item>
-                 <layout class="QVBoxLayout" name="verticalLayout_5">
+                 <widget class="QTableWidget" name="tableWidgetListProducers"/>
+                </item>
+                <item>
+                 <layout class="QVBoxLayout" name="verticalLayout_18">
                   <item>
-                   <layout class="QHBoxLayout" name="horizontalLayout_4">
+                   <layout class="QHBoxLayout" name="horizontalLayout_16">
                     <item>
-                     <widget class="QTableWidget" name="tableWidgetListProducers"/>
+                     <layout class="QHBoxLayout" name="horizontalLayout_17">
+                      <item>
+                       <widget class="QLabel" name="label_3">
+                        <property name="text">
+                         <string>Meeting's propositions</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QComboBox" name="comboBoxListDate_2"/>
+                      </item>
+                     </layout>
                     </item>
                     <item>
-                     <spacer name="verticalSpacer_2">
+                     <widget class="QPushButton" name="pushButton_5">
+                      <property name="text">
+                       <string>Accept</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_18">
+                    <item>
+                     <widget class="QLabel" name="label_5">
+                      <property name="font">
+                       <font>
+                        <family>STIXGeneral</family>
+                        <italic>true</italic>
+                       </font>
+                      </property>
+                      <property name="layoutDirection">
+                       <enum>Qt::LeftToRight</enum>
+                      </property>
+                      <property name="autoFillBackground">
+                       <bool>false</bool>
+                      </property>
+                      <property name="text">
+                       <string>Upon acceptance the producer will be notified of your visit  </string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="horizontalSpacer_14">
                       <property name="orientation">
-                       <enum>Qt::Vertical</enum>
+                       <enum>Qt::Horizontal</enum>
                       </property>
                       <property name="sizeHint" stdset="0">
                        <size>
-                        <width>158</width>
-                        <height>328</height>
+                        <width>248</width>
+                        <height>20</height>
                        </size>
                       </property>
                      </spacer>
@@ -275,17 +322,21 @@
                    </layout>
                   </item>
                   <item>
-                   <spacer name="horizontalSpacer_5">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>898</width>
-                      <height>58</height>
-                     </size>
-                    </property>
-                   </spacer>
+                   <layout class="QHBoxLayout" name="horizontalLayout_20">
+                    <item>
+                     <spacer name="horizontalSpacer_16">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>448</width>
+                        <height>13</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
                   </item>
                  </layout>
                 </item>
@@ -295,7 +346,7 @@
             </widget>
             <widget class="QWidget" name="tab_2">
              <attribute name="title">
-              <string>Produits</string>
+              <string>Products</string>
              </attribute>
              <layout class="QVBoxLayout" name="verticalLayout_16">
               <item>
@@ -326,7 +377,7 @@
                           <item>
                            <widget class="QLabel" name="label_9">
                             <property name="text">
-                             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Rayons&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Shelves&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                             </property>
                            </widget>
                           </item>
@@ -334,7 +385,7 @@
                            <widget class="QTableWidget" name="tableWidgetRayonList">
                             <column>
                              <property name="text">
-                              <string>Nom</string>
+                              <string>Name</string>
                              </property>
                             </column>
                            </widget>
@@ -343,6 +394,9 @@
                         </item>
                         <item>
                          <layout class="QHBoxLayout" name="horizontalLayout_8">
+                          <item>
+                           <widget class="QLineEdit" name="lineEditCreateShelf"/>
+                          </item>
                           <item>
                            <spacer name="horizontalSpacer_7">
                             <property name="orientation">
@@ -359,7 +413,7 @@
                           <item>
                            <widget class="QPushButton" name="pushButtonCreateRayon">
                             <property name="text">
-                             <string>Créer un rayon</string>
+                             <string>Create shelf</string>
                             </property>
                            </widget>
                           </item>
@@ -395,7 +449,7 @@
                            <widget class="QTableWidget" name="tableWidgetCategoryList">
                             <column>
                              <property name="text">
-                              <string>Nom</string>
+                              <string>Name</string>
                              </property>
                             </column>
                            </widget>
@@ -404,6 +458,9 @@
                         </item>
                         <item>
                          <layout class="QHBoxLayout" name="horizontalLayout_7">
+                          <item>
+                           <widget class="QLineEdit" name="lineEditAddCategory"/>
+                          </item>
                           <item>
                            <spacer name="horizontalSpacer_8">
                             <property name="orientation">
@@ -420,7 +477,7 @@
                           <item>
                            <widget class="QPushButton" name="pushButtonAddCategory">
                             <property name="text">
-                             <string>Ajouter</string>
+                             <string>Add category</string>
                             </property>
                            </widget>
                           </item>
@@ -448,7 +505,7 @@
                           <item>
                            <widget class="QLabel" name="label_11">
                             <property name="text">
-                             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Produits&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Products&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                             </property>
                            </widget>
                           </item>
@@ -459,6 +516,9 @@
                         </item>
                         <item>
                          <layout class="QHBoxLayout" name="horizontalLayout_6">
+                          <item>
+                           <widget class="QLineEdit" name="lineEditAddProduct"/>
+                          </item>
                           <item>
                            <spacer name="horizontalSpacer_9">
                             <property name="orientation">
@@ -475,7 +535,7 @@
                           <item>
                            <widget class="QPushButton" name="pushButtonAddProduct">
                             <property name="text">
-                             <string>Ajouter</string>
+                             <string>Add product</string>
                             </property>
                            </widget>
                           </item>
@@ -484,19 +544,6 @@
                        </layout>
                       </item>
                      </layout>
-                    </item>
-                    <item>
-                     <spacer name="horizontalSpacer_10">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>898</width>
-                        <height>18</height>
-                       </size>
-                      </property>
-                     </spacer>
                     </item>
                    </layout>
                   </item>
@@ -516,6 +563,13 @@
                  </layout>
                 </item>
                 <item>
+                 <widget class="QLabel" name="labelErrorMessage">
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
                  <spacer name="horizontalSpacer_11">
                   <property name="orientation">
                    <enum>Qt::Horizontal</enum>
@@ -531,6 +585,68 @@
                </layout>
               </item>
              </layout>
+            </widget>
+            <widget class="QWidget" name="tab_4">
+             <attribute name="title">
+              <string>Propositions</string>
+             </attribute>
+             <widget class="QTableWidget" name="tableWidgetListOfProductPropositions">
+              <property name="geometry">
+               <rect>
+                <x>30</x>
+                <y>50</y>
+                <width>601</width>
+                <height>271</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label">
+              <property name="geometry">
+               <rect>
+                <x>30</x>
+                <y>10</y>
+                <width>191</width>
+                <height>21</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="whatsThis">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="text">
+               <string>Products propositions</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="pushButton_2">
+              <property name="geometry">
+               <rect>
+                <x>680</x>
+                <y>60</y>
+                <width>95</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Accept</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="pushButton_3">
+              <property name="geometry">
+               <rect>
+                <x>680</x>
+                <y>100</y>
+                <width>95</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Refuse</string>
+              </property>
+             </widget>
             </widget>
            </widget>
           </item>

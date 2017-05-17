@@ -30,6 +30,16 @@ public:
      */
     QString idController;
     /**
+     * @brief idRayon
+     * public variable
+     */
+    QString idRayon;
+    /**
+     * @brief idCategorie
+     * public variable
+     */
+    QString idCategorie;
+    /**
      * @brief getId
      * @return max id +1 from database
      */
@@ -86,14 +96,18 @@ private slots:
      * @param column return the column of clicked column
      */
     void on_tableWidgetListControllers_cellClicked(int row, int column);
-    /**
-     * @brief on_tableWidgetRayonList_clicked
-     * @param index return the categories of rayon
-     */
 
-    void on_tableWidgetRayonList_clicked(const QModelIndex &index);
+    void on_tableWidgetListControllers_cellEntered(int row, int column);
 
-    void on_tableWidgetCategoryList_clicked(const QModelIndex &index);
+    void on_tableWidgetRayonList_cellClicked(int row, int column);
+
+    void on_tableWidgetCategoryList_cellClicked(int row, int column);
+
+    void on_pushButtonCreateRayon_clicked();
+
+    void on_pushButtonAddCategory_clicked();
+
+    void on_pushButtonAddProduct_clicked();
 
 private:
     Ui::MainWindow *ui;
