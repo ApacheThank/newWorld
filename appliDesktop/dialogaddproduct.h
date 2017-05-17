@@ -34,6 +34,11 @@ public:
      * @param product
      */
     void setSelectedProduct(QString product);
+    /**
+     * @brief closeDialog
+     * close the dialog
+     */
+    void closeDialog();
 private:
     Ui::DialogAddProduct *ui;
 };

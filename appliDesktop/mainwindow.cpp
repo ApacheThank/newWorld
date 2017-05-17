@@ -381,8 +381,8 @@ void MainWindow::on_pushButtonAddProduct_clicked()
                         reqText+=QString::number(newIdProduct)+",'"+newProduct+"',"+unitPrice+","+qty+","+idCategorie+");";
                         insertProduct.exec(reqText);
                         loadProducts();
-                        dialogProduct.close();
-                        qDebug()<<reqText;
+                        qDebug()<<reqText;           
+                        dialogProduct.closeDialog();
                     }
                 }
             } else { ui->labelErrorMessage->setText("The entered product is already exists"); }
