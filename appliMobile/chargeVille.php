@@ -19,7 +19,7 @@
 $requete1="set names utf8;";
 $res1=mysqli_query($requete1);
 
-$requete ="select concat(utilisateur.ville,',France') as location, true as stopover from visite v inner join ControleProducteur cp on v.idVisite=cp.idVisite inner join utilisateur u on cp.idUtilisateur=u.idUtilisateur where v.idRole=".$_GET["idControleur"];";
+$requete ="select concat(u.ville,',France') as location, true as stopover from visite v inner join ControleProducteur cp on v.idVisite=cp.idVisite inner join utilisateur u on cp.idUtilisateur=u.idUtilisateur where v.idRole=".$_GET["idControleur"];";
 
 $res=$db_con->prepare($requete);
 $res->execute();
