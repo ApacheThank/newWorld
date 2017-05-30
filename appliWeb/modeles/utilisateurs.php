@@ -1,5 +1,45 @@
 <?php
 
+function generateCode($length=8) {
+		$chars = "aAbBcCdDeEfFgGhHjJiIkKlLmMnNoOpPqQrRsStTuUwWvVxXyYzZ0123456789";
+		$code = "";
+		$clen = strlen($chars) - 1;  
+		while (strlen($code) < $length) {
+			$code .= $chars[mt_rand(0,$clen)];  
+		}
+			return $code;
+}
+	   
+//fonction e-mail
+function smtpmailer($to,$sujet,$message,$entete){
+	require_once("PHPMailer/class.phpmailer.php");
+	require_once("PHPMailer/class.smtp.php");
+	$mail = new PHPMailer();
+	$mail->IsSMTP();
+	$mail->IsHTML();    
+	$mail->Host='localhost';
+	$mail->SMTPDebug=0;
+	$mail->SMTPAuth=true;
+	$mail->SMTPSecure='ssl';
+	$mail->Host='smtp.gmail.com';
+	$mail->Port=465;
+	$mail->Username='apachethank@gmail.com';
+	$mail->Password='JaMaS003'; //ton mdp gmail
+	$mail->SetFrom('apachethank@gmail.com');
+	$mail->AddReplyTo('apachethank@gmail.com');
+	$mail->CharSet="utf-8";
+	$mail->Subject = $sujet;
+	$mail->Body = $message;
+	$mail->AddAddress($to);
+                 
+	if(!$mail->Send()){
+		echo 'E-mail non envoyé';
+		echo 'Mailer error:'.$mail->Errorinfo;
+	}else{
+		echo 'Message envoyé';
+	}
+} //fin fonction e-mail
+
 function combinaison_connexion_valide($login, $mdp) {
 
 	$pdo = PDO2::getInstance();
@@ -25,7 +65,7 @@ function lire_infos_utilisateur($id_connexion) {
 
 	$pdo = PDO2::getInstance();
 
-	$requete = $pdo->prepare("SELECT nom, prenom, login, adresse, ville, codePostal, email, mdp, dateInscription,typeUtilisateur,tel
+	$requete = $pdo->prepare("SELECT idUtilisateur, nom, prenom, login, adresse, ville, codePostal, email, mdp, dateInscription,typeUtilisateur,tel
 		FROM utilisateur
 		WHERE
 		login = :id_connexion");
@@ -56,7 +96,7 @@ function maj_email_membre($id_utilisateur, $email)
 function maj_mdp_membre($id_connexion,$mdp)
 {
      $pdo = PDO2::getInstance();
-
+	$mdp=sha1($mdp);
 	$requete = $pdo->prepare("UPDATE utilisateur SET
 		mdp = :mdp
 		WHERE
@@ -102,6 +142,7 @@ function verif_ancien_mdp($id_connexion)
 		if ($result = $requete->fetch(PDO::FETCH_ASSOC)) {
 	    //   echo "=> $result[mdp] <br />";
 		$requete->closeCursor();
+		return $result['mdp'];
 	}
 	return $result;
 		
@@ -110,8 +151,8 @@ function verif_ancien_mdp($id_connexion)
 
 function connexion($login, $mdp) 
 {
-    $mdp = sha1($mdp); // chiffrement le mot de passe sur varchar(40)
-    $pdo = PDO2::getInstance();
+    $mdp = sha1($mdp);// chiffrement le mot de passe sur varchar(40)
+	$pdo = PDO2::getInstance();
     $requete = $pdo->prepare("SELECT login FROM utilisateur
 		WHERE login = :login
                 AND  mdp = :mdp;");
@@ -127,7 +168,29 @@ function connexion($login, $mdp)
 	return false;
 }
 
+function compteActive($login)
+{
+	$pdo = PDO2::getInstance();
+	$requete = $pdo->prepare("select active from utilisateur	
+					where login = :login;");
+	$requete->bindValue(':login',$login);
+	$requete->execute();
+	if ($result = $requete->fetch(PDO::FETCH_ASSOC)) {
+		$requete->closeCursor();
+		return $result['active'];
+	}
+	return $result;
+}
 
+function activationCompte($login)
+{
+	$pdo = PDO2::getInstance();
+	$requete = $pdo->prepare("update utilisateur
+				set active=1
+				where login = :login;");
+	$requete->bindValue(':login',$login);
+	$requete->execute();
+}
 
 
 ?>

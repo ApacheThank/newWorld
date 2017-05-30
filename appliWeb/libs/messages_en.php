@@ -1,8 +1,8 @@
 <?php
-/** English translation of the site 
+
+ /* English translation of the site 
   * for the file inscription.php
   */
-
 $labelFirstName="First Name";
 $labelLastName="Last Name";
 $labelLogin="Your login";
@@ -21,7 +21,7 @@ $pRequiredField="Required field";
 $labelInscription="Inscription";
 /////////////////////////////////////////////
 
-/**
+ /*
   *Translation for hautNW.php
   */
 $aHome="Home";
@@ -35,7 +35,7 @@ $aLogOut="Log out";
 $aAccount="My account";
 ////////////////////////////////////////////
 
-/**
+ /*
   *Translation for basNW.php
   */
 $aParticipate="Participate";
@@ -54,7 +54,7 @@ $aKnowledgeArtisans="Knowledge of the artisans";
 $aReceptesGrandmother="The grandmother's recipes";
 $aFoodPreservation="Food preservation";
 
-/**
+ /*
   *Translation for register.php
   */
 
@@ -115,7 +115,11 @@ $labelContentMessage="We'll write rarely, but only the best content";
  $buttonSave="Save";
  $labelOldPswd = "Your old password";
  $labelNewPswd = "Your new password";
- $labelNewPswdVerif = "Repeat your new password";
+ $labelNewPswdVerif = "Repeat your new password(verification)";
+ $labelActivationSucces="Your account was successfully activated";
+ $labelDemandeAccountActivation="Please change your password to activate your account";
+ $errorNewPassword ="The entered new passwords don't match ";
+
 
 /*
  * Translation for connexion
@@ -123,7 +127,7 @@ $labelContentMessage="We'll write rarely, but only the best content";
 $labelErrorConnection="Login or/and password entered is incorrect";
 
 /*
- * Translation for declarer_produit
+ * Translation for declaration_produit
  */
 $labelLotProduction="Production batch";
 $labelQuantity="Quantity";
@@ -132,7 +136,76 @@ $labelLengthPreservation="Length of preservation";
 $labelSalesUnit="Sales unit";
 $labelProductionMode="Production mode";
 $labelManuelCollecting="Manual collecting";
-$labelUnitPrice="Unit price";
-$submitPropose="Propose";
-$labelMessageNecessaryInscription="You must be registered before to propose your product";
+$labelUnitPrice = "Unit price";
+$labelAddProduct= "Add product";
+$labelProposeYourOwnProduct = "Propose your own product";
+$submitPropose = "Propose";
+$labelMessageNecessaryInscription="You must be registered or connected before to propose your product";
+$labelProposeProductIn = "Propose your product in category:";
+$labelSelectProduct = "Select product";
+$labelIfYouNotFind ="If you don't fint your produc in the list, you can add your own";
+$valueNewProduct = "New product";
+$errorQuantity1="Enter the quantity of product";
+$errorQuantity2="The quantity can't have the caracters";
+$errorHarvestDate1="Enter the date of harvest";
+$errorHarvestDate2="";
+$errorPreservationLength1 = "Enter the length of preservation";
+$errorPreservationLength2 = "";
+$errorSalesUnit1="Enter the sales of unit";
+$errorSalesUnit2 = "";
+$errorProductionMode1 = "Enter the production mode";
+$errorProductionMode2 = "";
+$errorUnitPrice1 = "Enter the unit price";
+$errorUnitPrice2= "The unit price can't have the caracters";
+
+/**
+  * Translation for inscription_effectue
+  */
+
+$labelRegistrationCompleted = "Registration completed";
+$labelSuccesfullyRegistered = "Registration has been successfully completed!";
+$labelMessageSuccesfullyRegistered ="You will soon receive an email allowing you to activate your account so that you can log in";
+
+/**
+  * Translation for compte_valide
+  */
+$labelConfirmationAccount= "Confirmation of Account Validation";
+$labelActivatedAccount="Your account has been activated";
+/**
+  * Translation for connexion_ok
+  */
+$labelConnectionOk = "Connection confirmation";
+$labelWelcome = "Welcome";
+$labelYouAreConnected = "You are now connected";
+/**
+  * Translation for erreur_activation_compte
+  */
+$labelErrorActivation = "Error of account activation";
+$labelErrorCurrentPswd="Your current password is incorrect";
+
+/**
+  * Translation for modifier_profil
+  */
+$submitModify="Modify";
+$submitModifyPswd = "Modify my password";
+$labelErrorFillAllFields= "It is necessary to fill all the fields";
+$labelErrorZipCode="Invalid zip code(must have 5 characters)";
+$labelErrorInvalidZipCode="Invalide zip code";
+$messageSuccesModifyAddress = "Your address, your zip code and your city have been succesfully changed"; 
+$messageSuccesModifyPswd = "Your password has been changed";
+
+
+/**
+  * Translation for formulaires_modifier_profil
+  */
+$labelModificationInfosLocalisation="Modification of the address,city and zip code";
+$labelModificationPswd="Modification of the password";
+
+/**
+  * Translation for deconnexion
+  */
+$labelLogoutConfirmation = "Logout confirmation";
+$labelGoodBye = "Good bye";
+$labelYourAreLoggedOut = "You are now logged out";
+
 ?>

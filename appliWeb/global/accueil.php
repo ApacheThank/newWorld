@@ -1,7 +1,8 @@
 <?php
+include CHEMIN_LIB.'messages_en.php';
 if (utilisateur_est_connecte()) {
 	?>
-	<h1>Bienvenue, <?php echo htmlspecialchars($_SESSION['nom']); ?>.</h1>
+	<h1><?=$labelWelcome?>, <?php echo htmlspecialchars($_SESSION['nom']); ?>.</h1>
 	<?php
 } else {
 ?>

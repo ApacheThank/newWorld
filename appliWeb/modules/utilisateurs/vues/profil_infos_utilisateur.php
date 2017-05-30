@@ -2,8 +2,8 @@
 <h2><?=$labelYourProfil?></h2>
 <p>
 	<span class="label_profil"><br /><?=$labelLogin?></span> : <?php echo htmlspecialchars($login); ?><br />
-	<span class="label_profil"><?=$labelFirstName?></span> : <?php echo htmlspecialchars($nom); ?><br />
-	<span class="label_profil"><?=$labelLastName?></span> : <?php echo htmlspecialchars($prenom); ?><br />
+	<span class="label_profil"><?=$labelLastName?></span> : <?php echo htmlspecialchars($nom); ?><br />
+	<span class="label_profil"><?=$labelFirstName?></span> : <?php echo htmlspecialchars($prenom); ?><br />
 	<span class="label_profil"><?=$labelMail?></span> : <?php echo htmlspecialchars($email); ?><br />
 	<span class="label_profil"><?=$labelAddress?> </span> : <?php echo htmlspecialchars($rue); ?><br />
 	<span class="label_profil"><?=$labelCity?></span> : <?php echo htmlspecialchars($ville); ?><br />

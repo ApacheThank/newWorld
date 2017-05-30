@@ -340,7 +340,7 @@ abstract class Form_Field {
 
                 if (!isset(self::$error_list['required'])) {
 
-                        self::$error_list['required'] = 'Ce champ est obligatoire.';
+                        self::$error_list['required'] = 'This field is required';
                 }
                 if (!isset(self::$error_list['maxlength'])) {
 

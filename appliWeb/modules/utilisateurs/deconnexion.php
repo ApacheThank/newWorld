@@ -1,5 +1,5 @@
 <?php 
-
+include CHEMIN_LIB.'messages_en.php';
 // Suppression de toutes les variables et destruction de la session
 $_SESSION = array();
 session_destroy();

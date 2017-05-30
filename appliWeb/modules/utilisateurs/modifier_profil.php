@@ -6,42 +6,30 @@ if (!utilisateur_est_connecte()) {
 } else {
 	// Ne pas oublier d'inclure la librairie Form
 	include CHEMIN_LIB.'form.php';
+	include CHEMIN_LIB.'messages_en.php';
     # "form_modif_infos" est l'ID unique du formulaire
 	$form_modif_infos_localisation = new Form("form_modif_infos_localisation");
 	
 	$form_modif_infos_localisation->method('POST');
 	
 	$form_modif_infos_localisation->add('Text', 'adresse')
-                         ->label("Votre adresse")
+                         ->label($labelAddress)
                          ->Required(true)
                          ->value($_SESSION['adresse']);
 	
 	$form_modif_infos_localisation->add('Text', 'codePostal')
-                         ->label("Votre code postal")
+                         ->label($labelZipCode)
                          ->Required(true)
                          ->value($_SESSION['codePostal']);
 	
 	$form_modif_infos_localisation->add('Text', 'ville')
-                         ->label("Votre ville")
+                         ->label($labelCity)
                          ->Required(true)
                          ->value($_SESSION['ville']);
 
 
 	$form_modif_infos_localisation->add('Submit', 'submit')
-                         ->value("Modifier");
-
-	// "form_modif_infos" est l'ID unique du formulaire
-	$form_modif_infos = new Form("form_modif_infos");
-	
-	$form_modif_infos->method('POST');
-	
-	$form_modif_infos->add('Email', 'email')
-                         ->label("Votre adresse email")
-                         ->Required(false)
-                         ->value($_SESSION['email']);
-
-	$form_modif_infos->add('Submit', 'submit')
-                         ->value("Modifier");					 
+                         ->value($submitModify);			 
 
 	// "form_modif_mdp" est l'ID unique du formulaire
 	$form_modif_mdp = new Form("form_modif_mdp");
@@ -49,16 +37,16 @@ if (!utilisateur_est_connecte()) {
 	$form_modif_mdp->method('POST');
 	
 	$form_modif_mdp->add('Password', 'mdp_ancien')
-                       ->label("Votre ancien mot de passe");
+                       ->label( $labelOldPswd);
 	
 	$form_modif_mdp->add('Password', 'mdp')
-                       ->label("Votre nouveau mot de passe");
+                       ->label($labelNewPswd);
 	
 	$form_modif_mdp->add('Password', 'mdp_verif')
-                       ->label("Votre nouveau mot de passe (v&eacute;rification)");
+                       ->label($labelNewPswdVerif);
 	
 	$form_modif_mdp->add('Submit', 'submit')
-					->value("Modifier mon mot de passe !");
+					->value($submitModifyPswd);
 	
 	// Création des tableaux des erreurs (un par formulaire)
 	$erreurs_form_modif_infos_localisation = array();
@@ -74,19 +62,19 @@ if (!utilisateur_est_connecte()) {
 		list($adresse, $codePostal, $ville) = $form_modif_infos_localisation->get_cleaned_data('adresse', 'codePostal', 'ville');
 		// Si l'un des champs est vide 
 		if ((     empty($adresse ) )||(empty($codePostal)) ||(empty($ville))    ) {
-		   $erreurs_form_modif_infos_localisation[] = "Il faut remplir tour les champs SVP.";
+		   $erreurs_form_modif_infos_localisation[] = $labelErrorFillAllFields;
 		}
 		else{
 		
 			$testCP = strlen($codePostal ) ;;
 			if ( $testCP != 5 ) 
 			{
-				$erreurs_form_modif_infos_localisation[] = "Code postal invalide. (il doit faire comporter 5 chiffres)";
+				$erreurs_form_modif_infos_localisation[] = $labelErrorZipCode;
 			}
 			
 			if ( intval($codePostal) == FALSE )
 			{
-				$erreurs_form_modif_infos_localisation[] = "Code postal invalide.";
+				$erreurs_form_modif_infos_localisation[] = $labelErrorInvalidZipCode;
 			}
             
 			if (empty($erreurs_form_modif_infos_localisation) ) { 	// cas OK  
@@ -96,10 +84,10 @@ if (!utilisateur_est_connecte()) {
 					$_SESSION['adresse']=$adresse;
 					$_SESSION['cp']=$codePostal;
 					$_SESSION['ville']=$ville;
-					$msg_confirm[] = "Votre adresse, votre code postal et votre ville ont &eacute;t&eacute; mises a jour.";
+					$msg_confirm[] =$messageSuccesModifyAddress;
 				}
 				else {
-				$erreurs_form_modif_infos_localisation[] = "contacter l'administrateur code erreur : AS005";
+				$erreurs_form_modif_infos_localisation[] = "Error code contact to administrator: AS005";
 				}
 			}
 			
@@ -107,47 +95,8 @@ if (!utilisateur_est_connecte()) {
 	}
 	
 	// Validation des champs suivant les règles en utilisant les données du tableau $_POST
-	$form_modif_infos->is_valid($_POST);
-	if ($form_modif_infos->is_valid($_POST)) 
-	{
-		list($email, $suppr_avatar, $avatar) = $form_modif_infos->get_cleaned_data('email', 'suppr_avatar', 'avatar');
-		// Si l'utilisateur veut modifier son adresse e-mail
-		if (!empty($email)) {
-			$test = maj_email_membre($_SESSION['id'], $email);
-			if (true === $test) {
-				// Çà a marché  !
-				$_SESSION['email']=$email;
-				$msg_confirm[] = "Adresse e-mail mise a jour avec succ&eacute;s !";
-				
-	
-			// Gestion des doublons
-			} else {
-				// Changement de nom de variable (plus lisible)
-				$erreur =& $test;
-				// On vérifie que l'erreur concerne bien un doublon
-				if (23000 == $erreur[0]) { // Le code d'erreur 23000 signifie "doublon" dans le standard ANSI SQL
-	
-					preg_match("`Duplicate entry '(.+)' for key \d+`is", $erreur[2], $valeur_probleme);
-					$valeur_probleme = $valeur_probleme[1];
-	
-					if ($email == $valeur_probleme) {
-	
-						$erreurs_form_modif_infos[] = "Cette adresse e-mail est deja utilis&eacute;e.";
-	
-					} else {
-	
-						$erreurs_form_modif_infos[] = "Erreur ajout SQL : doublon non identifi&eacute; pr&eacute;sent dans la base de donn&eacute;es.";
-					}
-	
-				} else {
-	
-					$erreurs_form_modif_infos[] = sprintf("Erreur ajout SQL : cas non trait&eacute; (SQLSTATE = %d).", $erreur[0]);
-				}
-	
-			}
-		}
-	
-	} else if ($form_modif_mdp->is_valid($_POST)) {
+		
+	  if ($form_modif_mdp->is_valid($_POST)) {
 		// On vérifie si les 2 mots de passe correspondent
 		list($mdpNouveau,$mdp_verif,$mdp_ancien)= $form_modif_mdp->get_cleaned_data('mdp','mdp_verif','mdp_ancien');
 		
@@ -157,14 +106,14 @@ if (!utilisateur_est_connecte()) {
 		
 		
 		if ($mdpNouveau != $mdp_verif) {
-				$erreurs_form_modif_mdp[] = "Les deux mots de passes entr&eacute;s sont diff&eacute;rents.";
+				$erreurs_form_modif_mdp[] = $errorNewPassword ;
 		
 		}
 		
 		
 		else if ($mdp_util_old != $mdp_ancien_cript){
 			
-			$erreurs_form_modif_mdp[] = " l'ancien mots de passe entrer n'est pas correcte.";
+			$erreurs_form_modif_mdp[] = $labelErrorCurrentPswd;
 		} else{
 		
 		
@@ -174,7 +123,7 @@ if (!utilisateur_est_connecte()) {
 		
 			// C'est bon, on peut modifier la valeur dans la BDD
 		    maj_mdp_membre($_SESSION['login'], sha1($mdpNouveau));
-			$msg_confirm[] = "Votre mot de passe a &eacute;t&eacute; modifi&eacute; avec succ&eacute;s.";
+			$msg_confirm[] = $messageSuccesModifyPswd ;
 		}
 	}
 }
