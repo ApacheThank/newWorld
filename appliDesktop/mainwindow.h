@@ -25,6 +25,11 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     /**
+     * @brief idProducteur
+     * public variable
+     */
+    QString idProducteur;
+    /**
      * @brief idController
      * public variable
      */
@@ -114,6 +119,11 @@ public:
      * load the product information
      */
     void loadProductInformation();
+    /**
+     * @brief loadControllersComboBox
+     * load all controllers and put into comboBox
+     */
+    void loadControllersComboBox();
 private slots:
     /**
      * @brief on_pushButtonAddController_clicked
@@ -164,6 +174,10 @@ private slots:
     void on_pushButtonSaveBatch_clicked();
 
     void on_pushButtonModifyNewProduct_clicked();
+
+    void on_tableWidgetListProducers_cellClicked(int row, int column);
+
+    void on_pushButtonAcceptVisit_clicked();
 
 private:
     Ui::MainWindow *ui;

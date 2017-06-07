@@ -83,23 +83,37 @@ public:
     QLabel *label_8;
     QSpacerItem *horizontalSpacer_32;
     QWidget *tab_3;
-    QWidget *widget;
-    QWidget *widget_2;
-    QDateEdit *dateEdit;
-    QPushButton *pushButtonAcceptVisit;
-    QComboBox *comboBoxListControllers;
-    QWidget *widget1;
     QVBoxLayout *verticalLayout_5;
-    QHBoxLayout *horizontalLayout_5;
+    QVBoxLayout *verticalLayout_36;
+    QSpacerItem *horizontalSpacer_36;
+    QHBoxLayout *horizontalLayout_24;
+    QSpacerItem *verticalSpacer_14;
+    QHBoxLayout *horizontalLayout_17;
+    QVBoxLayout *verticalLayout_35;
+    QVBoxLayout *verticalLayout_37;
+    QHBoxLayout *horizontalLayout_16;
     QLabel *labelProducers;
-    QSpacerItem *horizontalSpacer_6;
+    QSpacerItem *horizontalSpacer_35;
     QTableWidget *tableWidgetListProducers;
-    QVBoxLayout *verticalLayout_18;
-    QHBoxLayout *horizontalLayout_18;
-    QLabel *label_5;
-    QSpacerItem *horizontalSpacer_14;
-    QHBoxLayout *horizontalLayout_20;
-    QSpacerItem *horizontalSpacer_16;
+    QVBoxLayout *verticalLayout_38;
+    QHBoxLayout *horizontalLayout_25;
+    QLabel *label_12;
+    QSpacerItem *horizontalSpacer_37;
+    QHBoxLayout *horizontalLayout_26;
+    QSpacerItem *horizontalSpacer_38;
+    QHBoxLayout *horizontalLayout_27;
+    QWidget *widgetTakeVisit;
+    QVBoxLayout *verticalLayout_40;
+    QSpacerItem *horizontalSpacer_39;
+    QFormLayout *formLayout_5;
+    QLabel *label_13;
+    QLineEdit *lineEditVisitDescription;
+    QLabel *label_14;
+    QComboBox *comboBoxListControllers;
+    QLabel *label_15;
+    QDateEdit *dateEditVisit;
+    QPushButton *pushButtonAcceptVisit;
+    QSpacerItem *verticalSpacer_13;
     QWidget *tab_2;
     QVBoxLayout *verticalLayout_16;
     QVBoxLayout *verticalLayout_15;
@@ -151,6 +165,7 @@ public:
     QComboBox *comboBoxSortBatch;
     QTableWidget *tableWidgetListOfBatchPropositions;
     QVBoxLayout *verticalLayout_25;
+    QSpacerItem *horizontalSpacer_27;
     QWidget *widgetBatchInformation;
     QVBoxLayout *verticalLayout_17;
     QFormLayout *formLayout;
@@ -172,10 +187,6 @@ public:
     QLabel *labelProducer;
     QLabel *label8;
     QLabel *labelPreservation;
-    QHBoxLayout *horizontalLayout_4;
-    QPushButton *pushButtonRefuseBatch;
-    QPushButton *pushButtonAcceptBatch;
-    QSpacerItem *horizontalSpacer_27;
     QSpacerItem *verticalSpacer_8;
     QWidget *tab_5;
     QVBoxLayout *verticalLayout_28;
@@ -452,88 +463,177 @@ public:
         tabWidget->addTab(tab, QString());
         tab_3 = new QWidget();
         tab_3->setObjectName(QStringLiteral("tab_3"));
-        widget = new QWidget(tab_3);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(20, 350, 741, 151));
-        widget_2 = new QWidget(widget);
-        widget_2->setObjectName(QStringLiteral("widget_2"));
-        widget_2->setGeometry(QRect(20, 10, 691, 121));
-        dateEdit = new QDateEdit(widget_2);
-        dateEdit->setObjectName(QStringLiteral("dateEdit"));
-        dateEdit->setGeometry(QRect(170, 30, 122, 31));
-        dateEdit->setReadOnly(false);
-        dateEdit->setProperty("showGroupSeparator", QVariant(false));
-        dateEdit->setDateTime(QDateTime(QDate(2017, 1, 1), QTime(0, 0, 0)));
-        dateEdit->setMinimumDateTime(QDateTime(QDate(1753, 9, 14), QTime(0, 0, 0)));
-        pushButtonAcceptVisit = new QPushButton(widget_2);
-        pushButtonAcceptVisit->setObjectName(QStringLiteral("pushButtonAcceptVisit"));
-        pushButtonAcceptVisit->setGeometry(QRect(480, 40, 85, 31));
-        comboBoxListControllers = new QComboBox(widget_2);
-        comboBoxListControllers->setObjectName(QStringLiteral("comboBoxListControllers"));
-        comboBoxListControllers->setGeometry(QRect(310, 30, 83, 29));
-        widget1 = new QWidget(tab_3);
-        widget1->setObjectName(QStringLiteral("widget1"));
-        verticalLayout_5 = new QVBoxLayout(widget1);
+        verticalLayout_5 = new QVBoxLayout(tab_3);
         verticalLayout_5->setSpacing(6);
         verticalLayout_5->setContentsMargins(11, 11, 11, 11);
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
-        verticalLayout_5->setContentsMargins(0, 0, 0, 0);
-        horizontalLayout_5 = new QHBoxLayout();
-        horizontalLayout_5->setSpacing(6);
-        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
-        labelProducers = new QLabel(widget1);
+        verticalLayout_36 = new QVBoxLayout();
+        verticalLayout_36->setSpacing(6);
+        verticalLayout_36->setObjectName(QStringLiteral("verticalLayout_36"));
+        horizontalSpacer_36 = new QSpacerItem(868, 28, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        verticalLayout_36->addItem(horizontalSpacer_36);
+
+        horizontalLayout_24 = new QHBoxLayout();
+        horizontalLayout_24->setSpacing(6);
+        horizontalLayout_24->setObjectName(QStringLiteral("horizontalLayout_24"));
+        verticalSpacer_14 = new QSpacerItem(18, 498, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        horizontalLayout_24->addItem(verticalSpacer_14);
+
+        horizontalLayout_17 = new QHBoxLayout();
+        horizontalLayout_17->setSpacing(6);
+        horizontalLayout_17->setObjectName(QStringLiteral("horizontalLayout_17"));
+        verticalLayout_35 = new QVBoxLayout();
+        verticalLayout_35->setSpacing(6);
+        verticalLayout_35->setObjectName(QStringLiteral("verticalLayout_35"));
+        verticalLayout_37 = new QVBoxLayout();
+        verticalLayout_37->setSpacing(6);
+        verticalLayout_37->setObjectName(QStringLiteral("verticalLayout_37"));
+        horizontalLayout_16 = new QHBoxLayout();
+        horizontalLayout_16->setSpacing(6);
+        horizontalLayout_16->setObjectName(QStringLiteral("horizontalLayout_16"));
+        labelProducers = new QLabel(tab_3);
         labelProducers->setObjectName(QStringLiteral("labelProducers"));
 
-        horizontalLayout_5->addWidget(labelProducers);
+        horizontalLayout_16->addWidget(labelProducers);
 
-        horizontalSpacer_6 = new QSpacerItem(648, 13, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_35 = new QSpacerItem(648, 13, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout_5->addItem(horizontalSpacer_6);
+        horizontalLayout_16->addItem(horizontalSpacer_35);
 
 
-        verticalLayout_5->addLayout(horizontalLayout_5);
+        verticalLayout_37->addLayout(horizontalLayout_16);
 
-        tableWidgetListProducers = new QTableWidget(widget1);
+        tableWidgetListProducers = new QTableWidget(tab_3);
         tableWidgetListProducers->setObjectName(QStringLiteral("tableWidgetListProducers"));
 
-        verticalLayout_5->addWidget(tableWidgetListProducers);
+        verticalLayout_37->addWidget(tableWidgetListProducers);
 
-        verticalLayout_18 = new QVBoxLayout();
-        verticalLayout_18->setSpacing(6);
-        verticalLayout_18->setObjectName(QStringLiteral("verticalLayout_18"));
-        horizontalLayout_18 = new QHBoxLayout();
-        horizontalLayout_18->setSpacing(6);
-        horizontalLayout_18->setObjectName(QStringLiteral("horizontalLayout_18"));
-        label_5 = new QLabel(widget1);
-        label_5->setObjectName(QStringLiteral("label_5"));
+        verticalLayout_38 = new QVBoxLayout();
+        verticalLayout_38->setSpacing(6);
+        verticalLayout_38->setObjectName(QStringLiteral("verticalLayout_38"));
+        horizontalLayout_25 = new QHBoxLayout();
+        horizontalLayout_25->setSpacing(6);
+        horizontalLayout_25->setObjectName(QStringLiteral("horizontalLayout_25"));
+        label_12 = new QLabel(tab_3);
+        label_12->setObjectName(QStringLiteral("label_12"));
         QFont font;
         font.setFamily(QStringLiteral("STIXGeneral"));
         font.setItalic(true);
-        label_5->setFont(font);
-        label_5->setLayoutDirection(Qt::LeftToRight);
-        label_5->setAutoFillBackground(false);
+        label_12->setFont(font);
+        label_12->setLayoutDirection(Qt::LeftToRight);
+        label_12->setAutoFillBackground(false);
 
-        horizontalLayout_18->addWidget(label_5);
+        horizontalLayout_25->addWidget(label_12);
 
-        horizontalSpacer_14 = new QSpacerItem(248, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_37 = new QSpacerItem(248, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout_18->addItem(horizontalSpacer_14);
-
-
-        verticalLayout_18->addLayout(horizontalLayout_18);
-
-        horizontalLayout_20 = new QHBoxLayout();
-        horizontalLayout_20->setSpacing(6);
-        horizontalLayout_20->setObjectName(QStringLiteral("horizontalLayout_20"));
-        horizontalSpacer_16 = new QSpacerItem(448, 13, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_20->addItem(horizontalSpacer_16);
+        horizontalLayout_25->addItem(horizontalSpacer_37);
 
 
-        verticalLayout_18->addLayout(horizontalLayout_20);
+        verticalLayout_38->addLayout(horizontalLayout_25);
+
+        horizontalLayout_26 = new QHBoxLayout();
+        horizontalLayout_26->setSpacing(6);
+        horizontalLayout_26->setObjectName(QStringLiteral("horizontalLayout_26"));
+        horizontalSpacer_38 = new QSpacerItem(448, 13, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_26->addItem(horizontalSpacer_38);
 
 
-        verticalLayout_5->addLayout(verticalLayout_18);
+        verticalLayout_38->addLayout(horizontalLayout_26);
+
+
+        verticalLayout_37->addLayout(verticalLayout_38);
+
+
+        verticalLayout_35->addLayout(verticalLayout_37);
+
+        horizontalLayout_27 = new QHBoxLayout();
+        horizontalLayout_27->setSpacing(6);
+        horizontalLayout_27->setObjectName(QStringLiteral("horizontalLayout_27"));
+        widgetTakeVisit = new QWidget(tab_3);
+        widgetTakeVisit->setObjectName(QStringLiteral("widgetTakeVisit"));
+        widgetTakeVisit->setEnabled(true);
+        verticalLayout_40 = new QVBoxLayout(widgetTakeVisit);
+        verticalLayout_40->setSpacing(6);
+        verticalLayout_40->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_40->setObjectName(QStringLiteral("verticalLayout_40"));
+
+        horizontalLayout_27->addWidget(widgetTakeVisit);
+
+        horizontalSpacer_39 = new QSpacerItem(348, 138, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_27->addItem(horizontalSpacer_39);
+
+        formLayout_5 = new QFormLayout();
+        formLayout_5->setSpacing(6);
+        formLayout_5->setObjectName(QStringLiteral("formLayout_5"));
+        formLayout_5->setFieldGrowthPolicy(QFormLayout::AllNonFixedFieldsGrow);
+        label_13 = new QLabel(tab_3);
+        label_13->setObjectName(QStringLiteral("label_13"));
+
+        formLayout_5->setWidget(0, QFormLayout::LabelRole, label_13);
+
+        lineEditVisitDescription = new QLineEdit(tab_3);
+        lineEditVisitDescription->setObjectName(QStringLiteral("lineEditVisitDescription"));
+
+        formLayout_5->setWidget(0, QFormLayout::FieldRole, lineEditVisitDescription);
+
+        label_14 = new QLabel(tab_3);
+        label_14->setObjectName(QStringLiteral("label_14"));
+        label_14->setEnabled(true);
+
+        formLayout_5->setWidget(1, QFormLayout::LabelRole, label_14);
+
+        comboBoxListControllers = new QComboBox(tab_3);
+        comboBoxListControllers->setObjectName(QStringLiteral("comboBoxListControllers"));
+
+        formLayout_5->setWidget(1, QFormLayout::FieldRole, comboBoxListControllers);
+
+        label_15 = new QLabel(tab_3);
+        label_15->setObjectName(QStringLiteral("label_15"));
+        label_15->setEnabled(true);
+
+        formLayout_5->setWidget(2, QFormLayout::LabelRole, label_15);
+
+        dateEditVisit = new QDateEdit(tab_3);
+        dateEditVisit->setObjectName(QStringLiteral("dateEditVisit"));
+        dateEditVisit->setReadOnly(false);
+        dateEditVisit->setProperty("showGroupSeparator", QVariant(false));
+        dateEditVisit->setDateTime(QDateTime(QDate(2017, 1, 1), QTime(0, 0, 0)));
+        dateEditVisit->setMinimumDateTime(QDateTime(QDate(1753, 9, 14), QTime(0, 0, 0)));
+
+        formLayout_5->setWidget(2, QFormLayout::FieldRole, dateEditVisit);
+
+        pushButtonAcceptVisit = new QPushButton(tab_3);
+        pushButtonAcceptVisit->setObjectName(QStringLiteral("pushButtonAcceptVisit"));
+        pushButtonAcceptVisit->setEnabled(false);
+
+        formLayout_5->setWidget(3, QFormLayout::FieldRole, pushButtonAcceptVisit);
+
+
+        horizontalLayout_27->addLayout(formLayout_5);
+
+
+        verticalLayout_35->addLayout(horizontalLayout_27);
+
+
+        horizontalLayout_17->addLayout(verticalLayout_35);
+
+        verticalSpacer_13 = new QSpacerItem(68, 468, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        horizontalLayout_17->addItem(verticalSpacer_13);
+
+
+        horizontalLayout_24->addLayout(horizontalLayout_17);
+
+
+        verticalLayout_36->addLayout(horizontalLayout_24);
+
+
+        verticalLayout_5->addLayout(verticalLayout_36);
 
         tabWidget->addTab(tab_3, QString());
         tab_2 = new QWidget();
@@ -789,6 +889,19 @@ public:
         verticalLayout_25 = new QVBoxLayout();
         verticalLayout_25->setSpacing(6);
         verticalLayout_25->setObjectName(QStringLiteral("verticalLayout_25"));
+
+        horizontalLayout_11->addLayout(verticalLayout_25);
+
+
+        verticalLayout_29->addLayout(horizontalLayout_11);
+
+        horizontalSpacer_27 = new QSpacerItem(718, 108, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        verticalLayout_29->addItem(horizontalSpacer_27);
+
+
+        horizontalLayout_21->addLayout(verticalLayout_29);
+
         widgetBatchInformation = new QWidget(tab_4);
         widgetBatchInformation->setObjectName(QStringLiteral("widgetBatchInformation"));
         verticalLayout_17 = new QVBoxLayout(widgetBatchInformation);
@@ -892,37 +1005,8 @@ public:
 
         verticalLayout_17->addLayout(formLayout);
 
-        horizontalLayout_4 = new QHBoxLayout();
-        horizontalLayout_4->setSpacing(6);
-        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        pushButtonRefuseBatch = new QPushButton(widgetBatchInformation);
-        pushButtonRefuseBatch->setObjectName(QStringLiteral("pushButtonRefuseBatch"));
 
-        horizontalLayout_4->addWidget(pushButtonRefuseBatch);
-
-        pushButtonAcceptBatch = new QPushButton(widgetBatchInformation);
-        pushButtonAcceptBatch->setObjectName(QStringLiteral("pushButtonAcceptBatch"));
-
-        horizontalLayout_4->addWidget(pushButtonAcceptBatch);
-
-
-        verticalLayout_17->addLayout(horizontalLayout_4);
-
-
-        verticalLayout_25->addWidget(widgetBatchInformation);
-
-
-        horizontalLayout_11->addLayout(verticalLayout_25);
-
-
-        verticalLayout_29->addLayout(horizontalLayout_11);
-
-        horizontalSpacer_27 = new QSpacerItem(718, 108, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        verticalLayout_29->addItem(horizontalSpacer_27);
-
-
-        horizontalLayout_21->addLayout(verticalLayout_29);
+        horizontalLayout_21->addWidget(widgetBatchInformation);
 
         verticalSpacer_8 = new QSpacerItem(28, 488, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
@@ -1218,7 +1302,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1226,7 +1310,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Management", 0));
         labelLastName->setText(QApplication::translate("MainWindow", "Last name", 0));
         labelFirstName->setText(QApplication::translate("MainWindow", "First name", 0));
         labelStreet->setText(QApplication::translate("MainWindow", "Street", 0));
@@ -1240,10 +1324,13 @@ public:
         pushButtonEraseController->setText(QApplication::translate("MainWindow", "Erase", 0));
         label_8->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "Controllers", 0));
-        dateEdit->setDisplayFormat(QApplication::translate("MainWindow", "yyyy/MM/dd", 0));
-        pushButtonAcceptVisit->setText(QApplication::translate("MainWindow", "Accept", 0));
         labelProducers->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:16pt;\">Producers</span></p></body></html>", 0));
-        label_5->setText(QApplication::translate("MainWindow", "Upon acceptance the producer will be notified of your visit  ", 0));
+        label_12->setText(QApplication::translate("MainWindow", "The date of visit can be modfied by controller", 0));
+        label_13->setText(QApplication::translate("MainWindow", "Descriptiion of visit  ", 0));
+        label_14->setText(QApplication::translate("MainWindow", "Controllers      ", 0));
+        label_15->setText(QApplication::translate("MainWindow", "Date of visit", 0));
+        dateEditVisit->setDisplayFormat(QApplication::translate("MainWindow", "yyyy-MM-dd", 0));
+        pushButtonAcceptVisit->setText(QApplication::translate("MainWindow", "Accept", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindow", "Producers", 0));
         label_9->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:14pt; font-weight:600;\">Shelves</span></p></body></html>", 0));
         QTableWidgetItem *___qtablewidgetitem = tableWidgetRayonList->horizontalHeaderItem(0);
@@ -1285,8 +1372,6 @@ public:
         labelProducer->setText(QString());
         label8->setText(QApplication::translate("MainWindow", "Length of preservation(days)", 0));
         labelPreservation->setText(QString());
-        pushButtonRefuseBatch->setText(QApplication::translate("MainWindow", "Refuse", 0));
-        pushButtonAcceptBatch->setText(QApplication::translate("MainWindow", "Accept", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("MainWindow", "Batches", 0));
         label_2->setText(QApplication::translate("MainWindow", "New products", 0));
         labelProducShelf->setText(QApplication::translate("MainWindow", "Shelf", 0));

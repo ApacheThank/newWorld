@@ -163,31 +163,84 @@ void MainWindow::loadProducers()
 {
     qDebug()<<"MainWindow::loadProducers()";
     // le champ active est pour reinitialisation de mot de passe, si le compte était activé il renvoie 1
-    QSqlQuery maRequete("select nom,prenom,adresse,codePostal,ville,email,tel,dateInscription,active from utilisateur where typeUtilisateur=2;");
+    QSqlQuery maRequete("select nom,prenom,adresse,codePostal,ville,email,tel,dateInscription,active,idUtilisateur from utilisateur where typeUtilisateur=2;");
     // récuperation des colonnes
     QSqlRecord fields = maRequete.record();
     // création des lignes et colonnes
-    ui->tableWidgetListProducers->setColumnCount(fields.count());
+    ui->tableWidgetListProducers->setColumnCount(fields.count()-1);
     ui->tableWidgetListProducers->setRowCount(maRequete.size());
     int noLigne=0;
     //placement des headers
-    for(int noField=0;noField<fields.count();noField++)
+    for(int noField=0;noField<fields.count()-1;noField++)
     {
         // on donne le nom de colonne
         ui->tableWidgetListProducers->setHorizontalHeaderItem(noField,new QTableWidgetItem(fields.fieldName(noField)));
     }
     while(maRequete.next())
     {
-            for(int noField=0;noField<fields.count();noField++)
+            for(int noField=0;noField<fields.count()-1;noField++)
             {
                 QString valeur=maRequete.value(noField).toString();
                 QTableWidgetItem *cellule = new QTableWidgetItem(valeur);
                 ui->tableWidgetListProducers->setItem(noLigne,noField,cellule);
             }
+            QString idProducteur=maRequete.value("idUtilisateur").toString();
+            ui->tableWidgetListProducers->item(noLigne,0)->setData(32,idProducteur);
             //on passe à la ligne suivante
             noLigne++;
     }
 }
+
+
+
+
+
+void MainWindow::loadControllersComboBox(){
+    qDebug()<<"MainWindow::loadControllersComboBox()";
+    QSqlQuery query("select concat(nom,' ',prenom) as producteur,idPersonnel from personnel where typePersonnel='control';");
+    while(query.next()){
+        QString producteur = query.value("producteur").toString();
+        QString id = query.value(1).toString();
+        ui->comboBoxListControllers->addItem(producteur,id);
+        //qDebug()<<query.value(1).toString();
+    }
+}
+
+
+void MainWindow::on_tableWidgetListProducers_cellClicked(int row, int column)
+{
+    qDebug()<<"MainWindow::on_tableWidgetListProducers_cellClicked(int row, int column)";
+    idProducteur=ui->tableWidgetListProducers->item(row,0)->data(32).toString();
+    ui->pushButtonAcceptVisit->setEnabled(true);
+    loadControllersComboBox();
+}
+
+
+void MainWindow::on_pushButtonAcceptVisit_clicked()
+{
+    qDebug()<<"MainWindow::on_pushButtonAcceptVisit_clicked()";
+    QString visitDescription = ui->lineEditVisitDescription->text();
+    int index = ui->comboBoxListControllers->currentIndex();
+    QString idControl= ui->comboBoxListControllers->itemData(index).toString();
+    //QString id = ui->comboBoxListControllers->itemData();
+    QString dateVisit = ui->dateEditVisit->text();
+    qDebug()<<visitDescription;
+    qDebug()<<idControl;
+    if(!(visitDescription.isEmpty())){
+        QSqlQuery reqId("select ifnull(max(idVisite),0)+1 from visite;");
+        //reqId.exec();
+        reqId.first();
+        QString idVisite=reqId.value(0).toString();
+        QSqlQuery query;
+        qDebug()<<idProducteur;
+
+        QString texte = "insert into visite values ("+idVisite+","+visitDescription+","+dateVisit+","+idControl+","+idProducteur+");";
+        //query.exec(texte);
+        qDebug()<<texte;
+
+    }
+}
+
 
 
 /////////////////// fin d'onglet producteur ///////////////////
@@ -471,7 +524,7 @@ void MainWindow::loadProductionBatches(QString sort){
 void MainWindow::loadBatchInformation(){
     qDebug()<<"MainWindow::loadBatchInformation()";
     QSqlQuery query;
-    QString texte="select r.libelle,c.libelle,p.libelle,l.quantite,l.prixUnitaire,l.uniteDeVente,l.dateRecolte,CONCAT(u.nom,u.prenom) as producteur, l.nbJourConservation,";
+    QString texte="select r.libelle,c.libelle,p.libelle,l.quantite,l.prixUnitaire,l.uniteDeVente,l.dateRecolte,CONCAT(u.nom,' ',u.prenom) as producteur, l.nbJourConservation,";
             texte+="l.nbJourConservation,l.uniteDeVente,l.modeProduction,l.ramassageManuel from utilisateur u ";
             texte+="inner join lot l on u.idUtilisateur=l.idUtilisateur ";
             texte+="inner join produit p on l.idProduit=p.idProduit ";
@@ -681,5 +734,4 @@ void MainWindow::on_pushButtonModifyNewProduct_clicked()
     }
     loadCategoriesComboBox();
 }
-
 

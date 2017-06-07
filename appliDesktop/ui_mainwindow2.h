@@ -197,7 +197,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow2)
     {
-        MainWindow2->setWindowTitle(QApplication::translate("MainWindow2", "MainWindow", 0));
+        MainWindow2->setWindowTitle(QApplication::translate("MainWindow2", "Control", 0));
         labelProducteurs_2->setText(QApplication::translate("MainWindow2", "Producers", 0));
         labelSort->setText(QApplication::translate("MainWindow2", "Sort", 0));
         comboBox_2->clear();
