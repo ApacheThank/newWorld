@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
     <!-- Bootstrap -->
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Material Design Bootstrap -->
     <link href="dist/css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
@@ -23,8 +22,14 @@
     <![endif]-->
    <!-- Custom styles for this template -->
     <link href="dist/css/offcanvas.css" rel="stylesheet">
+    <link href="dist/css/languages.min.css" rel="stylesheet">
 	<link rel="icon" href="images/logo_NewWorld.ico" />
-  </head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js">
+</script>
+
+</head>
+
 
 <body>
 	<!-- Division pour le haut de page -->

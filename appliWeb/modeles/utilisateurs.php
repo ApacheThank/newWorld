@@ -191,6 +191,87 @@ function activationCompte($login)
 	$requete->bindValue(':login',$login);
 	$requete->execute();
 }
+// afficher les rayons
+function afficher_rayons() {
+	$tableau=array();
+	$pdo=PDO2::getInstance();
+	$requete=$pdo->prepare("select * from rayon;");
+	$requete->execute();
+	$i=0;
+	while ($result = $requete->fetch(PDO::FETCH_ASSOC)) {
+		$tableau[$i]=$result;
+		$i++;
+	}
+	$requete->closeCursor();
+	return $tableau;
+}	
+// afficher les catégories 
+function afficher_categories($ray) {
+	$tableau=array();
+	$pdo=PDO2::getInstance();
+	$requete=$pdo->prepare("select * from categorie where idRayon=:ray;");
+	$requete->bindValue(':ray',$ray);
+	$requete->execute();
+	$i=0;
+	while ($result = $requete->fetch(PDO::FETCH_ASSOC)) {
+		$tableau[$i]=$result;
+		$i++;
+	}
+	$requete->closeCursor();
+	return $tableau;
+}	
 
+// Afficher les produits
+function afficher_produits($cat){
+	$tableau=array();
+	$pdo=PDO2::getInstance();
+	$requete=$pdo->prepare("select * from lot l inner join produit p on l.idProduit=p.idProduit where idCategorie=:cat;");
+	$requete->bindValue(':cat',$cat);
+	$requete->execute();
+	$i=0;
+	while ($result = $requete->fetch(PDO::FETCH_ASSOC)) {
+		$tableau[$i]=$result;
+		$i++;
+	}
+	$requete->closeCursor();
+	return $tableau;
+}
+
+
+// Afficher les produits
+function afficher_tous_les_produits($cat){
+	$tableau=array();
+	$pdo=PDO2::getInstance();
+	$requete=$pdo->prepare("select * from produit where accepte=1 and idCategorie=:cat;");
+	$requete->bindValue(':cat',$cat);
+	$requete->execute();
+	$i=0;
+	while ($result = $requete->fetch(PDO::FETCH_ASSOC)) {
+		$tableau[$i]=$result;
+		$i++;
+	}
+	$requete->closeCursor();
+	return $tableau;
+}
+
+function rechercher_categorie_rayon($idProduit){
+	$tableau=array();
+	$pdo=PDO2::getInstance();
+	$requete=$pdo->prepare("select c.libelle as libCategorie, r.libelle
+		from produit p 
+		inner join categorie c on p.idCategorie=c.idCategorie 
+		inner join rayon r on c.idRayon=r.idRayon
+		where p.idProduit = :idProduit;");
+	$requete->bindValue(':idProduit',$idProduit);
+	$requete->execute();
+	$i=0;
+	while ($result = $requete->fetch(PDO::FETCH_ASSOC)) {
+		$tableau[$i]=$result;
+		$i++;
+	}
+	$requete->closeCursor();
+	return $tableau;
+
+}
 
 ?>

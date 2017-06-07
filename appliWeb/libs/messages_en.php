@@ -33,6 +33,7 @@ $aSignUp="Sign up";
 $aLogIn="Log in";
 $aLogOut="Log out";
 $aAccount="My account";
+$aDeclarePoint="Declare my point";
 ////////////////////////////////////////////
 
  /*
@@ -129,34 +130,34 @@ $labelErrorConnection="Login or/and password entered is incorrect";
 /*
  * Translation for declaration_produit
  */
-$labelLotProduction="Production batch";
+$labelProductionBatch="Production batch in category: ";
 $labelQuantity="Quantity";
 $labelDateHarvest="Date of harvest";
-$labelLengthPreservation="Length of preservation";
-$labelSalesUnit="Sales unit";
+$labelLengthPreservation="Length of preservation(days)";
+$labelSalesUnit="Sales unit(5 kg, 10 l, etc)";
 $labelProductionMode="Production mode";
 $labelManuelCollecting="Manual collecting";
 $labelUnitPrice = "Unit price";
-$labelAddProduct= "Add product";
-$labelProposeYourOwnProduct = "Propose your own product";
+$labelProposeMyOwnProduct = "Propose my own product";
 $submitPropose = "Propose";
-$labelMessageNecessaryInscription="You must be registered or connected before to propose your product";
-$labelProposeProductIn = "Propose your product in category:";
+$labelMessageNecessaryConnection="You must be connected before to propose your product";
+$labelAddProductIn = "Adding new product in the category: ";
 $labelSelectProduct = "Select product";
-$labelIfYouNotFind ="If you don't fint your produc in the list, you can add your own";
+$labelIfYouNotFind ="If you don't find your product in the list, you can add your own";
 $valueNewProduct = "New product";
 $errorQuantity1="Enter the quantity of product";
-$errorQuantity2="The quantity can't have the caracters";
+$errorQuantity2="The quantity can't shave the caracters";
 $errorHarvestDate1="Enter the date of harvest";
-$errorHarvestDate2="";
+$errorHarvestDate2="Date form invalid, it must be YYYY-mm-dd";
 $errorPreservationLength1 = "Enter the length of preservation";
-$errorPreservationLength2 = "";
+$errorPreservationLength2 = "Enter only the number of day";
 $errorSalesUnit1="Enter the sales of unit";
-$errorSalesUnit2 = "";
+$errorSalesUnit2 = "Enter the number of unit sale";
 $errorProductionMode1 = "Enter the production mode";
-$errorProductionMode2 = "";
+$errorProductionMode2 = "The production mode can have only the characters";
 $errorUnitPrice1 = "Enter the unit price";
-$errorUnitPrice2= "The unit price can't have the caracters";
+$errorUnitPrice2= "The unit price has the caracters or more than 2 digits after dot";
+$labelMessageSuccesfullyDeclaredBatch ="Batch declaration has been successfully completed, you will receive an email when your batch will be validated";
 
 /**
   * Translation for inscription_effectue
@@ -207,5 +208,31 @@ $labelModificationPswd="Modification of the password";
 $labelLogoutConfirmation = "Logout confirmation";
 $labelGoodBye = "Good bye";
 $labelYourAreLoggedOut = "You are now logged out";
+
+/**
+  * Translation for formulaire_declarer_point
+  */
+$labelDeclarationSalePoint = "Enter the required information to declare your point of sale";
+$labelCompanyName = "Company name";
+$labelActivity = "Activity of the company";
+$errorCompanyName1 = "Enter your company name";
+$errorCompanyName2 = "The company name can't have only english characters";
+$errorActivity1 = "Enter the activity of company";
+$errorActivity2 ="The activity can't have the characters"; 
+$errorPointAddressExists = "This point of sale is already exists";
+
+
+/**
+  * Translation for ajout_nouveau_produit
+  */
+$labelAverageUnitPrice="The average price for unit";
+$labelNameProduct ="Name of product";
+$errorProductName1 = "Enter the name of product";
+$errorProductName2 = "Product name can't have the characters";
+$product = "Product: ";
+$errorProductExists1 = " is already exists in the catégorie ";
+$errorProductExists2 = " of the shelf ";
+
+
 
 ?>

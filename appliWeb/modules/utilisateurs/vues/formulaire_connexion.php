@@ -1,5 +1,5 @@
 <div class="row">
-<div class="col-md-5 col-xs-offset-3">
+<div class="col-md-5 col-xs-offset">
 <!--Naked Form-->
 <div class="card-block">
 <form method="POST">
@@ -31,7 +31,7 @@
 <!--Footer-->
 <div class="modal-footer">
     <div class="options">
-        <p>Not a member? <a href="#">Sign Up</a></p>
+        <p>Not a member? <a href="index.php?module=utilisateurs&amp;action=inscription"><?=$aSignUp?></a></p>
         <p>Forgot <a href="#">Password?</a></p>
     </div>
 </form>

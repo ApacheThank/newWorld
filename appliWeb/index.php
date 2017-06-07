@@ -38,6 +38,7 @@ $contenu = ob_get_clean();
 // Début du code HTML
 include 'global/haut.php';
 
+
 echo $contenu;
 
 // Fin du code HTML

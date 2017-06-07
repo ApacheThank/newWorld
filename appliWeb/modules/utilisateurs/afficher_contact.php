@@ -1,6 +1,5 @@
 <?php
 
-include CHEMIN_LIB.'messages_en.php';
 include_once CHEMIN_VUE.'formulaire_contact.php';
 
 if(isset($_POST['submit']))

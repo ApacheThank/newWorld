@@ -3,6 +3,8 @@
       <div class="container">
         <div class="navbar-header">
           <a class="navbar-brand" href="index.php"><?=$aHome?></a>
+						<!--<span class='lang-sm' lang='en'></span>-->
+
 	
 
 <?php
@@ -16,7 +18,7 @@ $type_user = $_SESSION['typeUtilisateur'] ;
 switch ($type_user) {
 /*consommateur*/case 1 : 	
 			echo 	"<a class='navbar-brand' href='index.php?module=utilisateurs&amp;action=afficher_profil&amp;id=$id_utilisateur'>$aAccount</a>
-					<a class='navbar-brand' href=''>$aBuy</a>
+					<a class='navbar-brand' href='index.php?module=utilisateurs&amp;action=afficher_produits&amp;id=$id_utilisateur'>$aBuy</a>
 				</div>
 				<div id='navbar' class='navbar-collapse collapse'>
 					<form class='navbar-form navbar-right'>
@@ -43,6 +45,8 @@ switch ($type_user) {
 			break;
 /*point de vente*/case 3 : 	
 			echo 	"<a class='navbar-brand' href='index.php?module=utilisateurs&amp;action=afficher_profil&amp;id=$id_utilisateur'>$aAccount</a>
+					<a class='navbar-brand' href='index.php?module=utilisateurs&amp;action=declarer_point_vente&amp;id=$id_utilisateur'>$aDeclarePoint</a>
+				</div>
 				<div id='navbar' class='navbar-collapse collapse'>
 				<form class='navbar-form navbar-right'>
 					<form class='form-inline waves-effect waves-light'>
@@ -66,7 +70,7 @@ switch ($type_user) {
 	} // fin du else 
 } // fin du if 
 else { // si l'utilisateur n'est pas connecté			
-			echo "	<a class='navbar-brand' href='index.php?module=utilisateurs&amp;action=afficher_prestations'>$aBuy</a>
+			echo "	<a class='navbar-brand' href='index.php?module=utilisateurs&amp;action=afficher_produits'>$aBuy</a>
 					<a class='navbar-brand' href='index.php?module=utilisateurs&amp;action=declaration_produit'>$aProduce</a>
 					<a class='navbar-brand' href='index.php?module=utilisateurs&amp;action=afficher'>$aDistribute</a>
 					<a class='navbar-brand' href='index.php?module=utilisateurs&amp;action=afficher_contact'>$aContact</a>

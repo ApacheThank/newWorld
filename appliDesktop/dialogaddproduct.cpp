@@ -32,8 +32,3 @@ void DialogAddProduct::setSelectedProduct(QString product)
 {
     ui->labelEnteredProduct->setText(product);
 }
-
-void DialogAddProduct::closeDialog()
-{
-    close();
-}

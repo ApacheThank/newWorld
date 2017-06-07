@@ -21,6 +21,11 @@ MainWindow::MainWindow(QWidget *parent) :
     loadControllers();
     loadProducers();
     loadRayons();
+    loadProductionBatches("All");
+    loadAllProducts();
+    loadNewProducts();
+    ui->widgetProductInformation->hide();
+    ui->widgetBatchInformation->hide();
 }
 
 MainWindow::~MainWindow()
@@ -28,7 +33,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
+/**
+ *
+ * Onglet controlleurs
+ *
+ */
 void MainWindow::loadControllers()
 {
     qDebug()<<"MainWindow::loadControllers()";
@@ -96,50 +105,6 @@ void MainWindow::on_pushButtonAddController_clicked()
 
 }
 
-void MainWindow::loadProducers()
-{
-    qDebug()<<"MainWindow::loadProducers()";
-    QSqlQuery maRequete("select nom,prenom,adresse,codePostal,ville,email,tel,dateInscription,verifie from utilisateur where typeUtilisateur=2;");
-    // récuperation des colonnes
-    QSqlRecord fields = maRequete.record();
-    // création des lignes et colonnes
-    ui->tableWidgetListProducers->setColumnCount(fields.count());
-    ui->tableWidgetListProducers->setRowCount(maRequete.size());
-    int noLigne=0;
-    //placement des headers
-    for(int noField=0;noField<fields.count();noField++)
-    {
-        // on donne le nom de colonne
-        ui->tableWidgetListProducers->setHorizontalHeaderItem(noField,new QTableWidgetItem(fields.fieldName(noField)));
-    }
-    while(maRequete.next())
-    {
-            for(int noField=0;noField<fields.count();noField++)
-            {
-                QString valeur=maRequete.value(noField).toString();
-                QTableWidgetItem *cellule = new QTableWidgetItem(valeur);
-                ui->tableWidgetListProducers->setItem(noLigne,noField,cellule);
-            }
-            //on passe à la ligne suivante
-            noLigne++;
-    }
-}
-
-
-int MainWindow::getId()
-{
-    QSqlQuery getLastId("select ifnull(max(idPersonnel),0)+1 from personnel;");
-    getLastId.exec();
-    getLastId.first();
-    int id=getLastId.value(0).toInt();
-    qDebug()<<id;
-    return id;
-}
-
-void MainWindow::on_pushButton_clicked()
-{
-    close();
-}
 
 QString MainWindow::generatePassword()
 {
@@ -175,6 +140,69 @@ void MainWindow::on_tableWidgetListControllers_cellClicked(int row, int column)
     ui->pushButtonEraseController->setEnabled(true);
 }
 
+
+int MainWindow::getId()
+{
+    QSqlQuery getLastId("select ifnull(max(idPersonnel),0)+1 from personnel;");
+    getLastId.exec();
+    getLastId.first();
+    int id=getLastId.value(0).toInt();
+    qDebug()<<id;
+    return id;
+}
+
+///////////////////// fin d'onglet controlleurs //////////////////
+
+/**
+ *
+ * ongler producteurs
+ *
+ */
+
+void MainWindow::loadProducers()
+{
+    qDebug()<<"MainWindow::loadProducers()";
+    // le champ active est pour reinitialisation de mot de passe, si le compte était activé il renvoie 1
+    QSqlQuery maRequete("select nom,prenom,adresse,codePostal,ville,email,tel,dateInscription,active from utilisateur where typeUtilisateur=2;");
+    // récuperation des colonnes
+    QSqlRecord fields = maRequete.record();
+    // création des lignes et colonnes
+    ui->tableWidgetListProducers->setColumnCount(fields.count());
+    ui->tableWidgetListProducers->setRowCount(maRequete.size());
+    int noLigne=0;
+    //placement des headers
+    for(int noField=0;noField<fields.count();noField++)
+    {
+        // on donne le nom de colonne
+        ui->tableWidgetListProducers->setHorizontalHeaderItem(noField,new QTableWidgetItem(fields.fieldName(noField)));
+    }
+    while(maRequete.next())
+    {
+            for(int noField=0;noField<fields.count();noField++)
+            {
+                QString valeur=maRequete.value(noField).toString();
+                QTableWidgetItem *cellule = new QTableWidgetItem(valeur);
+                ui->tableWidgetListProducers->setItem(noLigne,noField,cellule);
+            }
+            //on passe à la ligne suivante
+            noLigne++;
+    }
+}
+
+
+/////////////////// fin d'onglet producteur ///////////////////
+
+void MainWindow::on_pushButton_clicked()
+{
+    close();
+}
+
+/**
+ *
+ * Onglet catalogue
+ *
+ *
+ */
 
 void MainWindow::loadRayons()
 {
@@ -257,10 +285,6 @@ void MainWindow::loadProducts()
 }
 
 
-void MainWindow::on_tableWidgetListControllers_cellEntered(int row, int column)
-{
-
-}
 
 void MainWindow::on_tableWidgetRayonList_cellClicked(int row, int column)
 {
@@ -381,8 +405,8 @@ void MainWindow::on_pushButtonAddProduct_clicked()
                         reqText+=QString::number(newIdProduct)+",'"+newProduct+"',"+unitPrice+","+qty+","+idCategorie+");";
                         insertProduct.exec(reqText);
                         loadProducts();
-                        qDebug()<<reqText;           
-                        dialogProduct.closeDialog();
+                        dialogProduct.close();
+                        qDebug()<<reqText;
                     }
                 }
             } else { ui->labelErrorMessage->setText("The entered product is already exists"); }
@@ -391,3 +415,271 @@ void MainWindow::on_pushButtonAddProduct_clicked()
 
     } else { ui->labelErrorMessage->setText("Please select the category"); }
 }
+
+////////////////// fin d'onglet catalogue  /////////////////////////
+
+
+/**
+ *
+ * onglet lot
+ *
+ */
+
+void MainWindow::loadProductionBatches(QString sort){
+    qDebug()<<"MainWindow::loadProductionBatches()";
+    QSqlQuery query;
+    QString texte="select p.libelle,l.quantite,l.prixUnitaire,l.dateRecolte,CONCAT(u.nom,u.prenom) as producteur,l.idLot ";
+            texte+=" from utilisateur u ";
+            texte+="inner join lot l on u.idUtilisateur=l.idUtilisateur ";
+            texte+="inner join produit p on l.idProduit=p.idProduit ";
+    if(sort=="Accepted"){
+        texte+="where verifie=1;";
+   } else { if(sort=="Waiting") {
+                texte+="where verifie=0";
+                }
+                texte+=";";
+            }
+    qDebug()<<texte;
+    query.exec(texte);
+    int noLigne=0;
+    QSqlRecord fields = query.record();
+    qDebug()<<fields;
+    ui->tableWidgetListOfBatchPropositions->setColumnCount(5);
+    ui->tableWidgetListOfBatchPropositions->setRowCount(query.size());
+    for(int noField=0;noField<5;noField++)
+    {
+        // on donne le nom de colonne
+        ui->tableWidgetListOfBatchPropositions->setHorizontalHeaderItem(noField,new QTableWidgetItem(fields.fieldName(noField)));
+        qDebug()<<fields.fieldName(noField);
+    }
+
+    while(query.next())
+    {
+        for(int noField=0;noField<5;noField++)
+        {
+            QString cell=query.value(noField).toString();
+            QTableWidgetItem * Cell = new QTableWidgetItem(cell);
+            ui->tableWidgetListOfBatchPropositions->setItem(noLigne,noField,Cell);
+        }
+        QString lot= query.value(5).toString();
+        qDebug()<<lot;
+        ui->tableWidgetListOfBatchPropositions->item(noLigne,0)->setData(32,lot);
+        noLigne++;
+    }
+}
+
+void MainWindow::loadBatchInformation(){
+    qDebug()<<"MainWindow::loadBatchInformation()";
+    QSqlQuery query;
+    QString texte="select r.libelle,c.libelle,p.libelle,l.quantite,l.prixUnitaire,l.uniteDeVente,l.dateRecolte,CONCAT(u.nom,u.prenom) as producteur, l.nbJourConservation,";
+            texte+="l.nbJourConservation,l.uniteDeVente,l.modeProduction,l.ramassageManuel from utilisateur u ";
+            texte+="inner join lot l on u.idUtilisateur=l.idUtilisateur ";
+            texte+="inner join produit p on l.idProduit=p.idProduit ";
+            texte+="inner join categorie c on p.idCategorie=c.idCategorie ";
+            texte+="inner join rayon r on c.idRayon=r.idRayon where idLot="+idLot+";";
+    query.exec(texte);
+    qDebug()<<texte;
+    while(query.next()){
+        ui->labelShelf->setText(query.value(0).toString());
+        ui->labelCategory->setText(query.value(1).toString());
+        ui->labelProduct->setText(query.value(2).toString());
+        ui->labelQuantity->setText(query.value(3).toString());
+        ui->labelPrice->setText(query.value(4).toString());
+        ui->labelSalesUnit->setText(query.value(5).toString());
+        ui->labelHarvestDate->setText(query.value(6).toString());
+        ui->labelProducer->setText(query.value(7).toString());
+        ui->labelPreservation->setText(query.value(8).toString());
+    }
+}
+
+void MainWindow::on_tableWidgetListOfBatchPropositions_cellClicked(int row, int column)
+{
+    qDebug()<<"MainWindow::on_tableWidgetListOfBatchPropositions_cellClicked(int row, int column)";
+    idLot = ui->tableWidgetListOfBatchPropositions->item(row,0)->data(32).toString();
+    ui->widgetBatchInformation->show();
+    loadBatchInformation();
+}
+
+void MainWindow::on_pushButtonAcceptBatch_clicked()
+{
+    qDebug()<<"MainWindow::on_pushButtonAcceptBatch_clicked()";
+    QSqlQuery query;
+    QString texte = "update lot set verifie=1 where idLot="+idLot+";";
+    query.exec(texte);
+    qDebug()<<texte;
+
+}
+
+
+void MainWindow::on_pushButtonRefuseBatch_clicked()
+{
+    qDebug()<<"MainWindow::on_pushButtonRefuseBatch_clicked()";
+    QSqlQuery query;
+    QString texte = "delete from lot where idLot="+idLot+" and verifie=0;";
+    qDebug()<<texte;
+    bool res=query.exec(texte);
+
+    // à finir
+    if(res==true)
+    {
+        //ui->labelActionMessage->setText(tr());
+        ui->labelActionMessage->setText("Selected production batch has been removed");
+
+    } else {
+        ui->labelActionMessage->setText("Accepted production batch can't be removed");
+
+    }
+}
+
+void MainWindow::on_comboBoxSortBatch_activated(const QString &arg1)
+{
+    qDebug()<<"MainWindow::on_comboBox_activated(const QString &arg1)";
+    QString sortList = ui->comboBoxSortBatch->currentText();
+    qDebug()<<sortList;
+    loadProductionBatches(sortList);
+}
+
+//////////////// fin d'onglet lot ////////////////////
+
+/**
+ *
+ * onglet produits
+ *
+ */
+
+void MainWindow::loadNewProducts() {
+    qDebug()<<"MainWindow::loadNewProducts()";
+    QSqlQuery query("select libelle,idProduit from produit where accepte = 0;");
+    query.exec();
+    int noLigne=0;
+    QSqlRecord fields= query.record();
+    ui->tableWidgetProductPropositions->setColumnCount(1);
+    ui->tableWidgetProductPropositions->setRowCount(query.size());
+    ui->tableWidgetProductPropositions->setHorizontalHeaderItem(0,new QTableWidgetItem(fields.fieldName(0)));
+    while(query.next()){
+        QString cell = query.value(0).toString();
+        QTableWidgetItem * Cell= new QTableWidgetItem(cell);
+        ui->tableWidgetProductPropositions->setItem(noLigne,0,Cell);
+        ui->tableWidgetProductPropositions->item(noLigne,0)->setData(32,query.value(1).toString());
+        noLigne++;
+    }
+
+}
+
+// charge tous les produits de la catalogue
+void  MainWindow::loadAllProducts() {
+    qDebug()<<"MainWindow::loadAllProducts()";
+    QSqlQuery query("select libelle as nom_produit,idProduit from produit where accepte=1;");
+    query.exec();
+    int noLigne=0;
+    QSqlRecord fields= query.record();
+    ui->tableWidgetAllProducts->setColumnCount(1);
+    ui->tableWidgetAllProducts->setRowCount(query.size());
+    ui->tableWidgetAllProducts->setHorizontalHeaderItem(0,new QTableWidgetItem(fields.fieldName(0)));
+
+    while(query.next()){
+        QString cell = query.value(0).toString();
+        QTableWidgetItem * Cell= new QTableWidgetItem(cell);
+        ui->tableWidgetAllProducts->setItem(noLigne,0,Cell);
+        ui->tableWidgetAllProducts->item(noLigne,0)->setData(32,query.value(1).toString());
+        noLigne++;
+    }
+}
+
+void MainWindow::loadProductInformation(){
+    qDebug()<<"MainWindow::loadProducInformation()";
+    QSqlQuery query;
+    QString texte = "select p.libelle,c.libelle,r.libelle ";
+    texte+="from produit p inner join categorie c on p.idCategorie=c.idCategorie ";
+    texte+="inner join rayon r on c.idRayon=r.idRayon ";
+    texte+="where idProduit="+idProduit+";";
+    qDebug()<<texte;
+    query.exec(texte);
+    while(query.next()){
+    ui->comboBoxShelf->addItem(query.value(2).toString());
+    ui->comboBoxCategory->addItem(query.value(1).toString());
+    ui->labelNewProductLabel->setText(query.value(0).toString());
+    }
+}
+
+void MainWindow::on_tableWidgetProductPropositions_cellClicked(int row, int column)
+{
+    qDebug()<<"MainWindow::on_tableWidgetProductPropositions_cellClicked(int row, int column)";
+    idProduit = ui->tableWidgetProductPropositions->item(row,0)->data(32).toString();
+    ui->comboBoxShelf->clear();
+    ui->comboBoxCategory->clear();
+    ui->widgetProductInformation->show();
+    loadProductInformation();
+
+}
+
+
+void MainWindow::on_pushButtonAcceptNewProduct_clicked()
+{
+    qDebug()<<"MainWindow::on_pushButtonAcceptNewProduct_clicked()";
+    QSqlQuery query;
+    QString texte = "update produit set accepte=1 where idProduit="+idProduit+";";
+    query.exec(texte);
+    qDebug()<<texte;
+    loadAllProducts();
+    loadNewProducts();
+}
+
+
+
+void MainWindow::loadCategoriesComboBox(){
+    qDebug()<<"MainWindow::loadCategoriesComboBox()";
+    QString rayon=ui->comboBoxShelf->currentText();
+    QSqlQuery query;
+    int noLigne=0;
+    QString texte = "select c.libelle from categorie c inner join rayon r on c.idRayon=r.idRayon where r.libelle='"+rayon+"';";
+    qDebug()<<texte;
+    query.exec(texte);
+    while(query.next()){
+        ui->comboBoxCategory->addItem(query.value(0).toString());
+        qDebug()<<query.value(0).toString();
+        noLigne++;
+    }
+}
+
+void MainWindow::on_comboBoxShelf_activated(const QString &arg1)
+{
+    qDebug()<<"MainWindow::on_comboBoxShelf_activated(const QString &arg1)";
+    ui->comboBoxCategory->clear();
+    loadCategoriesComboBox();
+}
+
+void MainWindow::on_pushButtonSaveBatch_clicked()
+{
+    qDebug()<<"MainWindow::on_pushButtonSaveBatch_clicked()";
+    QSqlQuery query;
+    QString rayon = ui->comboBoxShelf->currentText();
+    QString categ = ui->comboBoxCategory->currentText();
+    QString findIdCat = "select idCategorie from categorie where libelle='"+categ+"';";
+    query.exec(findIdCat);
+    if(query.next()){
+        QString idCat = query.value(0).toString();
+
+    QSqlQuery update;
+    QString texte ="update produit set idCategorie="+idCat+" where idProduit='"+idProduit+"';";
+    update.exec(texte);
+    }
+    ui->labelActionMessage->setText(tr("The category of product has been changed"));
+}
+
+void MainWindow::on_pushButtonModifyNewProduct_clicked()
+{
+    QSqlQuery query("select libelle,idRayon from rayon;");
+    query.exec();
+    ui->widgetProductInformation->show();
+    int noLigne=0;
+    ui->comboBoxShelf->clear();
+    ui->comboBoxCategory->clear();
+    while(query.next()){
+        ui->comboBoxShelf->addItem(query.value(0).toString());
+        noLigne++;
+    }
+    loadCategoriesComboBox();
+}
+
+

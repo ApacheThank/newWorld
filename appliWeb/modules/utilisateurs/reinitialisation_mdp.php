@@ -2,7 +2,6 @@
 // connexion premiere fois
 	#connection à la base de données
 	include CHEMIN_LIB.'db.php';
-	include CHEMIN_LIB.'messages_en.php';
 
 	
 	// check connection

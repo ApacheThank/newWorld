@@ -6,7 +6,6 @@ if (!utilisateur_est_connecte()) {
 } else {
 	// Ne pas oublier d'inclure la librairie Form
 	include CHEMIN_LIB.'form.php';
-	include CHEMIN_LIB.'messages_en.php';
     # "form_modif_infos" est l'ID unique du formulaire
 	$form_modif_infos_localisation = new Form("form_modif_infos_localisation");
 	
@@ -102,25 +101,15 @@ if (!utilisateur_est_connecte()) {
 		
 		$vrif_mdp = verif_ancien_mdp($_SESSION['login']);
 		 $mdp_ancien_cript = sha1($mdp_ancien);
-		$mdp_util_old =$vrif_mdp['mdp'];
-		
+		 $mdp_util_old =$vrif_mdp['mdp'];
 		
 		if ($mdpNouveau != $mdp_verif) {
 				$erreurs_form_modif_mdp[] = $errorNewPassword ;
 		
 		}
-		
-		
 		else if ($mdp_util_old != $mdp_ancien_cript){
-			
-			$erreurs_form_modif_mdp[] = $labelErrorCurrentPswd;
+		$erreurs_form_modif_mdp[] = $labelErrorCurrentPswd;
 		} else{
-		
-		
-		
-		// On veut utiliser le modèle de l'inscription (~/modeles/visiteurs.php)
-		//include CHEMIN_MODELE.'visiteurs.php';
-		
 			// C'est bon, on peut modifier la valeur dans la BDD
 		    maj_mdp_membre($_SESSION['login'], sha1($mdpNouveau));
 			$msg_confirm[] = $messageSuccesModifyPswd ;

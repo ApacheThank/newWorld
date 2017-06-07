@@ -153,9 +153,3 @@ values (3,"pointDeVente");
 
 select libelle, nom,prenom from utilisateur u inner join typeUtilisateur t on u.typeUtilisateur=t.idTypeUtilisateur where typeUtilisateur=2;
 
-
-alter table produit add column accepte boolean NOT NULL default false;
-
-
-
-insert into lot values (1,25,"2017-05-05",14,"5","hors sol",1,2.4,10,1);

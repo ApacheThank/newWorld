@@ -3,7 +3,6 @@
 
 #connection à la base de données
 include CHEMIN_LIB.'db.php';
-include CHEMIN_LIB.'messages_en.php';
 $inscription_effectuee = false;
 // check connection
 if(!mysqli_connect_errno())
@@ -23,6 +22,8 @@ if(isset($_POST['registration']))
 	{$err[] = $errorLogin1;}
 	elseif(strlen($_POST['login']) < 3 or strlen($_POST['login']) > 30)
 	{$err[] = $errorLogin2;}
+	elseif(empty($_POST['address']))
+	{$err[] = $errorAddress;}
 	#vérification de mail
 	elseif(empty($_POST['email']))
 	{$err[] = $errorMail1;}
@@ -60,7 +61,8 @@ if(isset($_POST['registration']))
 	{$err[] = $errorMail3;} 
 	# si ne contient pas des erreurs, on ajoute à la base de données
 	if(count($err) == 0 )
-	{$firstName = $_POST['firstName'];
+	{
+	$firstName = $_POST['firstName'];
 	$lastName = $_POST['lastName'];
 	$login = $_POST['login'];
 	$address = $_POST['address'];
@@ -103,7 +105,7 @@ if(isset($_POST['registration']))
 	} else { 
 	foreach($err AS $error)
     { echo "<div class='alert alert-info'>";
-      echo "<strong>Info!</striong>".$error."</div>";}	  
+      echo "<strong>Info!</strong>".$error."</div>";}	  
     }
 }
 if ($inscription_effectuee!=1) {

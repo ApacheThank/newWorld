@@ -40,6 +40,16 @@ public:
      */
     QString idCategorie;
     /**
+     * @brief idLot
+     * public variable
+     */
+    QString idLot;
+    /**
+     * @brief idProduit
+     * public variable
+     */
+    QString idProduit;
+    /**
      * @brief getId
      * @return max id +1 from database
      */
@@ -74,6 +84,36 @@ public:
      * load all products from category
      */
     void loadProducts();
+    /**
+     * @brief loadProductionBatch
+     * load all production batches from database
+     */
+    void loadProductionBatches(QString sort);
+    /**
+     * @brief loadBatchInformation
+     * load all information about clicked batch
+     */
+    void loadBatchInformation();
+    /**
+     * @brief loadNewProducts
+     * load all new products
+     */
+    void loadNewProducts();
+    /**
+     * @brief loadAllProducts
+     * load all products
+     */
+    void loadAllProducts();
+    /**
+     * @brief loadCategoriesComboBox
+     * load categories and put into combobox
+     */
+    void loadCategoriesComboBox();
+    /**
+     * @brief loadProductInformation
+     * load the product information
+     */
+    void loadProductInformation();
 private slots:
     /**
      * @brief on_pushButtonAddController_clicked
@@ -97,8 +137,6 @@ private slots:
      */
     void on_tableWidgetListControllers_cellClicked(int row, int column);
 
-    void on_tableWidgetListControllers_cellEntered(int row, int column);
-
     void on_tableWidgetRayonList_cellClicked(int row, int column);
 
     void on_tableWidgetCategoryList_cellClicked(int row, int column);
@@ -108,6 +146,24 @@ private slots:
     void on_pushButtonAddCategory_clicked();
 
     void on_pushButtonAddProduct_clicked();
+
+    void on_tableWidgetListOfBatchPropositions_cellClicked(int row, int column);
+
+    void on_pushButtonAcceptBatch_clicked();
+
+    void on_comboBoxSortBatch_activated(const QString &arg1);
+
+    void on_pushButtonRefuseBatch_clicked();
+
+    void on_pushButtonAcceptNewProduct_clicked();
+
+    void on_tableWidgetProductPropositions_cellClicked(int row, int column);
+
+    void on_comboBoxShelf_activated(const QString &arg1);
+
+    void on_pushButtonSaveBatch_clicked();
+
+    void on_pushButtonModifyNewProduct_clicked();
 
 private:
     Ui::MainWindow *ui;

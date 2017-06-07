@@ -2,7 +2,6 @@
 // Vérification des droits d'accès de la page
 
 include CHEMIN_LIB.'db.php';
-include CHEMIN_LIB.'messages_en.php';
 
 $connected = false;
 if(isset($_POST['connect']))

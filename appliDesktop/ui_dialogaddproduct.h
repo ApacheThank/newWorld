@@ -153,7 +153,7 @@ public:
 
     void retranslateUi(QDialog *DialogAddProduct)
     {
-        DialogAddProduct->setWindowTitle(QApplication::translate("DialogAddProduct", "Dialog", 0));
+        DialogAddProduct->setWindowTitle(QApplication::translate("DialogAddProduct", "Product", 0));
         label_3->setText(QApplication::translate("DialogAddProduct", "You have just added the product:", 0));
         labelEnteredProduct->setText(QString());
         label->setText(QApplication::translate("DialogAddProduct", "Unit price  ", 0));

@@ -1,6 +1,5 @@
 <?php
 // Pas de vérification de droits d'accès nécessaire : tout le monde peut voir un profil utilisateur :)
-include CHEMIN_LIB.'messages_en.php';
 // Si le paramètre id est manquant ou invalide
 if (empty($_GET['id']) ) {
 
