@@ -236,21 +236,26 @@ void MainWindow::on_pushButtonAcceptVisit_clicked()
     QString idControl= ui->comboBoxListControllers->itemData(index).toString();
     //QString id = ui->comboBoxListControllers->itemData();
     QString dateVisit = ui->dateEditVisit->text();
-    qDebug()<<visitDescription;
-    qDebug()<<idControl;
+    //qDebug()<<visitDescription;
+    //qDebug()<<idControl;
     if(!(visitDescription.isEmpty())){
         QSqlQuery reqId("select ifnull(max(idVisite),0)+1 from visite;");
         //reqId.exec();
         reqId.first();
         QString idVisite=reqId.value(0).toString();
         QSqlQuery query;
+        QSqlQuery secondQuery;
         qDebug()<<idProducteur;
 
-        QString texte = "insert into visite values ("+idVisite+","+visitDescription+","+dateVisit+","+idControl+","+idProducteur+");";
-        //query.exec(texte);
+        QString texte = "insert into visite values ("+idVisite+",'"+visitDescription+"','"+dateVisit+"',"+idControl+");";
+        QString texteRequete = "insert into ControleProducteur values ("+idProducteur+","+idVisite+");";
+        query.exec(texte);
+        secondQuery.exec(texteRequete);
+        qDebug()<<texteRequete;
         qDebug()<<texte;
+        ui->labelActionMessage->setText(tr("The visit has been added "));
 
-    }
+    } else { ui->labelActionMessage->setText(tr("Please enter the visit description")); }
 }
 
 

@@ -21,8 +21,13 @@ class MainWindow2 : public QMainWindow
     Q_OBJECT
     
 public:
-    explicit MainWindow2(QWidget *parent = 0);
+    explicit MainWindow2(QString variable, QWidget *parent = 0);
     ~MainWindow2();
+    /**
+     * @brief idConnected
+     * public variable passée lors de connection
+     */
+    QString idConnected;
     /**
      * @brief idProducteur
      * public variable
@@ -33,6 +38,16 @@ public:
      * load all producers from database
      */
     void loadProducers(QString trier);
+    /**
+     * @brief loadVisitInformation
+     * load information about visit token for clicked producer's
+     */
+    void loadVisitInformation();
+    /**
+     * @brief clearVisitInformation
+     * clear visit information
+     */
+    void clearVisitInformation();
 private slots:
     /**
      * @brief on_pushButtonExit_clicked
@@ -46,9 +61,30 @@ private slots:
      */
     void on_comboBoxSort_activated(const QString &arg1);
 
+    /**
+     * @brief on_tableWidgetListProducers_cellClicked
+     * @param row
+     * @param column
+     */
     void on_tableWidgetListProducers_cellClicked(int row, int column);
 
+    /**
+     * @brief on_pushButtonValidProducer_clicked
+     * valid selected producer if not validated
+     */
     void on_pushButtonValidProducer_clicked();
+
+    /**
+     * @brief on_pushButtonRefuseProducer_clicked
+     * refuse the producer
+     */
+    void on_pushButtonRefuseProducer_clicked();
+
+    /**
+     * @brief on_pushButtonAcceptVisit2_clicked
+     * accept the visit
+     */
+    void on_pushButtonAcceptVisit2_clicked();
 
 private:
     Ui::MainWindow2 *ui;

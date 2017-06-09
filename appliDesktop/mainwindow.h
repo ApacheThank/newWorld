@@ -146,33 +146,81 @@ private slots:
      * @param column return the column of clicked column
      */
     void on_tableWidgetListControllers_cellClicked(int row, int column);
-
+    /**
+     * @brief on_tableWidgetRayonList_cellClicked
+     * @param row
+     * @param column
+     */
     void on_tableWidgetRayonList_cellClicked(int row, int column);
-
+    /**
+     * @brief on_tableWidgetCategoryList_cellClicked
+     * @param row
+     * @param column
+     */
     void on_tableWidgetCategoryList_cellClicked(int row, int column);
-
+    /**
+     * @brief on_pushButtonCreateRayon_clicked
+     * create the rayon
+     */
     void on_pushButtonCreateRayon_clicked();
-
+    /**
+     * @brief on_pushButtonAddCategory_clicked
+     * add category into the rayon
+     */
     void on_pushButtonAddCategory_clicked();
-
+    /**
+     * @brief on_pushButtonAddProduct_clicked
+     * add the product into the category
+     */
     void on_pushButtonAddProduct_clicked();
-
+    /**
+     * @brief on_tableWidgetListOfBatchPropositions_cellClicked
+     * @param row
+     * @param column
+     */
     void on_tableWidgetListOfBatchPropositions_cellClicked(int row, int column);
-
+    /**
+     * @brief on_pushButtonAcceptNewProduct_clicked
+     * accept the new proposed product
+     */
     void on_pushButtonAcceptNewProduct_clicked();
-
+    /**
+     * @brief on_tableWidgetProductPropositions_cellClicked
+     * @param row
+     * @param column
+     */
     void on_tableWidgetProductPropositions_cellClicked(int row, int column);
-
+    /**
+     * @brief on_comboBoxShelf_activated
+     * @param arg1
+     * load the categories while activated
+     */
     void on_comboBoxShelf_activated(const QString &arg1);
-
+    /**
+     * @brief on_pushButtonSaveProduct_clicked
+     * save the modified product
+     */
     void on_pushButtonSaveProduct_clicked();
-
+    /**
+     * @brief on_pushButtonModifyNewProduct_clicked
+     */
     void on_pushButtonModifyNewProduct_clicked();
-
+    /**
+     * @brief on_tableWidgetListProducers_cellClicked
+     * @param row
+     * @param column
+     */
     void on_tableWidgetListProducers_cellClicked(int row, int column);
-
+    /**
+     * @brief on_pushButtonAcceptVisit_clicked
+     * update fixed visit
+     */
     void on_pushButtonAcceptVisit_clicked();
-
+    /**
+     * @brief on_tableWidgetListControllers_itemChanged
+     * @param item
+     * save the modification after text changed
+     */
     void on_tableWidgetListControllers_itemChanged(QTableWidgetItem *item);
 
 private:

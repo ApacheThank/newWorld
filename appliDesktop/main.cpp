@@ -42,9 +42,11 @@ int main(int argc, char *argv[])
           {
              QString type=laRequete.value("typePersonnel").toString();
              qDebug()<<type;
+             QString idConnected = laRequete.value(0).toString();
+             qDebug()<<idConnected;
 
              if(type=="control") {
-                 MainWindow2 w2;
+                 MainWindow2 w2(idConnected);
                  w2.show();
                  return a.exec();
              } else {

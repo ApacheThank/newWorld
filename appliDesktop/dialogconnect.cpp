@@ -28,5 +28,5 @@ QString DialogConnect::getMdp()
 
 void DialogConnect::setMessage()
 {
-    ui->label->setText("Mauvais identifiant ou mot de passe, réessayez !");
+    ui->label->setText(tr("Login or password is incorrect"));
 }
