@@ -24,16 +24,31 @@ public:
     explicit MainWindow2(QWidget *parent = 0);
     ~MainWindow2();
     /**
+     * @brief idProducteur
+     * public variable
+     */
+    QString idProducteur;
+    /**
      * @brief loadProducers
      * load all producers from database
      */
-    void loadProducers();
+    void loadProducers(QString trier);
 private slots:
     /**
      * @brief on_pushButtonExit_clicked
      * close the program
      */
     void on_pushButtonExit_clicked();
+
+    /**
+     * @brief on_comboBoxSort_activated
+     * @param arg1 load the producers by param got
+     */
+    void on_comboBoxSort_activated(const QString &arg1);
+
+    void on_tableWidgetListProducers_cellClicked(int row, int column);
+
+    void on_pushButtonValidProducer_clicked();
 
 private:
     Ui::MainWindow2 *ui;

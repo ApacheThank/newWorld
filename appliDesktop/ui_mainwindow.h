@@ -162,7 +162,6 @@ public:
     QHBoxLayout *horizontalLayout_12;
     QLabel *label;
     QSpacerItem *horizontalSpacer_13;
-    QComboBox *comboBoxSortBatch;
     QTableWidget *tableWidgetListOfBatchPropositions;
     QVBoxLayout *verticalLayout_25;
     QSpacerItem *horizontalSpacer_27;
@@ -215,7 +214,7 @@ public:
     QLabel *labelNewProduct;
     QLabel *labelNewProductLabel;
     QPushButton *pushButtonModifyNewProduct;
-    QPushButton *pushButtonSaveBatch;
+    QPushButton *pushButtonSaveProduct;
     QSpacerItem *horizontalSpacer_5;
     QSpacerItem *horizontalSpacer_21;
     QSpacerItem *horizontalSpacer_10;
@@ -870,11 +869,6 @@ public:
 
         horizontalLayout_12->addItem(horizontalSpacer_13);
 
-        comboBoxSortBatch = new QComboBox(tab_4);
-        comboBoxSortBatch->setObjectName(QStringLiteral("comboBoxSortBatch"));
-
-        horizontalLayout_12->addWidget(comboBoxSortBatch);
-
 
         verticalLayout_19->addLayout(horizontalLayout_12);
 
@@ -1135,10 +1129,10 @@ public:
 
         formLayout_3->setWidget(4, QFormLayout::LabelRole, pushButtonModifyNewProduct);
 
-        pushButtonSaveBatch = new QPushButton(widgetProductInformation);
-        pushButtonSaveBatch->setObjectName(QStringLiteral("pushButtonSaveBatch"));
+        pushButtonSaveProduct = new QPushButton(widgetProductInformation);
+        pushButtonSaveProduct->setObjectName(QStringLiteral("pushButtonSaveProduct"));
 
-        formLayout_3->setWidget(4, QFormLayout::FieldRole, pushButtonSaveBatch);
+        formLayout_3->setWidget(4, QFormLayout::FieldRole, pushButtonSaveProduct);
 
         horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -1302,7 +1296,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(3);
+        tabWidget->setCurrentIndex(4);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1348,12 +1342,6 @@ public:
         label->setWhatsThis(QApplication::translate("MainWindow", "<html><head/><body><p><br/></p></body></html>", 0));
 #endif // QT_NO_WHATSTHIS
         label->setText(QApplication::translate("MainWindow", "Batch proposition", 0));
-        comboBoxSortBatch->clear();
-        comboBoxSortBatch->insertItems(0, QStringList()
-         << QApplication::translate("MainWindow", "All", 0)
-         << QApplication::translate("MainWindow", "Accepted", 0)
-         << QApplication::translate("MainWindow", "Waiting", 0)
-        );
         label1->setText(QApplication::translate("MainWindow", "Shelf", 0));
         labelShelf->setText(QString());
         label2->setText(QApplication::translate("MainWindow", "Category", 0));
@@ -1379,7 +1367,7 @@ public:
         labelNewProduct->setText(QApplication::translate("MainWindow", "Product", 0));
         labelNewProductLabel->setText(QString());
         pushButtonModifyNewProduct->setText(QApplication::translate("MainWindow", "Modify", 0));
-        pushButtonSaveBatch->setText(QApplication::translate("MainWindow", "Save", 0));
+        pushButtonSaveProduct->setText(QApplication::translate("MainWindow", "Save", 0));
         pushButtonAcceptNewProduct->setText(QApplication::translate("MainWindow", "Accept", 0));
         pushButtonRefuseNewProduct->setText(QApplication::translate("MainWindow", "Refuse", 0));
         label_4->setText(QApplication::translate("MainWindow", "All products", 0));

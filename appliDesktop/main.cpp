@@ -4,11 +4,20 @@
 #include "dialogconnect.h"
 #include <QSqlDatabase>
 #include <QDebug>
+#include <QTranslator>
+#include <QTextCodec>
+#include <QLibraryInfo>
 
 int main(int argc, char *argv[])
 
 {    QApplication a(argc, argv);
      QSqlDatabase dbConnect=QSqlDatabase::addDatabase("QMYSQL");
+      // pour la traduction
+      QTranslator qtTranslator;
+      //QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
+      QTextCodec::setCodecForLocale(QTextCodec::codecForName("utf8"));
+      qtTranslator.load("qt_" + QLocale::system().name(),
+       QLibraryInfo::location(QLibraryInfo::TranslationsPath));
      //grant all privileges on dbNewWorld.* to akhasanov identified by '';
      dbConnect.setHostName("localhost");
      dbConnect.setDatabaseName("dbNewWorld_v1");
@@ -22,7 +31,7 @@ int main(int argc, char *argv[])
          QString login=dialogConnect.getLogin();
          QString mdp=dialogConnect.getMdp();
          QSqlQuery laRequete;
-         QString texteRequete = "select * from personnel where login='"+login+"' and mdp="+mdp+";";
+         QString texteRequete = "select * from personnel where login='"+login+"' collate utf8_bin and mdp="+mdp+" ;"; // collate utf8_bin por la sensibilité
          qDebug()<<texteRequete;
          qDebug()<<texteRequete;
          bool Requete=laRequete.exec(texteRequete);

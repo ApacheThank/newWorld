@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     loadControllers();
     loadProducers();
     loadRayons();
-    loadProductionBatches("All");
+    loadProductionBatches();
     loadAllProducts();
     loadNewProducts();
     ui->widgetProductInformation->hide();
@@ -71,8 +71,7 @@ void MainWindow::loadControllers()
 
 }
 
-
-
+// ajout un controleur
 void MainWindow::on_pushButtonAddController_clicked()
 {
     qDebug()<<"MainWindow::on_pushButtonAddController_clicked()";
@@ -105,7 +104,7 @@ void MainWindow::on_pushButtonAddController_clicked()
 
 }
 
-
+// on genere le mot de passe pour envoyer au controleur
 QString MainWindow::generatePassword()
 {
     qDebug()<<"MainWindow::generatePassword()";
@@ -120,6 +119,7 @@ QString MainWindow::generatePassword()
     return code;
 }
 
+// pour la suppression du controleur
 void MainWindow::on_pushButtonEraseController_clicked()
 {    qDebug()<<"MainWindow::on_pushButtonEraseController_clicked()";
      QSqlQuery reqSupprimer;
@@ -130,6 +130,7 @@ void MainWindow::on_pushButtonEraseController_clicked()
      ui->tableWidgetListControllers->removeRow(ui->tableWidgetListControllers->currentRow());
 }
 
+//  lors d'un click sur la liste des controleurs
 void MainWindow::on_tableWidgetListControllers_cellClicked(int row, int column)
 {
     qDebug()<<"MainWindow::on_tableWidgetListControllers_cellClicked(int row, int column)";
@@ -140,7 +141,7 @@ void MainWindow::on_tableWidgetListControllers_cellClicked(int row, int column)
     ui->pushButtonEraseController->setEnabled(true);
 }
 
-
+// recuperer l'id max du personnel
 int MainWindow::getId()
 {
     QSqlQuery getLastId("select ifnull(max(idPersonnel),0)+1 from personnel;");
@@ -151,6 +152,20 @@ int MainWindow::getId()
     return id;
 }
 
+// lors d'un changement de la liste des controleurs
+void MainWindow::on_tableWidgetListControllers_itemChanged(QTableWidgetItem *item)
+{
+    qDebug()<<"MainWindow::on_tableWidgetListControllers_itemChanged(QTableWidgetItem *item)";
+    QString modif = item->data(Qt::DisplayRole).toString();
+    int Label = ui->tableWidgetListControllers->currentColumn();
+    QTableWidgetItem * nomColonne=ui->tableWidgetListControllers->horizontalHeaderItem(Label);
+    //QString NomColonne = nomColonne->data(Qt::DisplayRolee).toString();
+    qDebug()<<nomColonne;
+    qDebug()<<Label;
+    qDebug()<<modif;
+}
+
+
 ///////////////////// fin d'onglet controlleurs //////////////////
 
 /**
@@ -158,7 +173,7 @@ int MainWindow::getId()
  * ongler producteurs
  *
  */
-
+// charger des producteurs
 void MainWindow::loadProducers()
 {
     qDebug()<<"MainWindow::loadProducers()";
@@ -191,10 +206,7 @@ void MainWindow::loadProducers()
     }
 }
 
-
-
-
-
+// charger les controleurs et mettre les dans combobox
 void MainWindow::loadControllersComboBox(){
     qDebug()<<"MainWindow::loadControllersComboBox()";
     QSqlQuery query("select concat(nom,' ',prenom) as producteur,idPersonnel from personnel where typePersonnel='control';");
@@ -206,7 +218,7 @@ void MainWindow::loadControllersComboBox(){
     }
 }
 
-
+// lors d'un click sur la liste des producteurs
 void MainWindow::on_tableWidgetListProducers_cellClicked(int row, int column)
 {
     qDebug()<<"MainWindow::on_tableWidgetListProducers_cellClicked(int row, int column)";
@@ -215,7 +227,7 @@ void MainWindow::on_tableWidgetListProducers_cellClicked(int row, int column)
     loadControllersComboBox();
 }
 
-
+// pour accepter la visite pour le producteur
 void MainWindow::on_pushButtonAcceptVisit_clicked()
 {
     qDebug()<<"MainWindow::on_pushButtonAcceptVisit_clicked()";
@@ -245,6 +257,7 @@ void MainWindow::on_pushButtonAcceptVisit_clicked()
 
 /////////////////// fin d'onglet producteur ///////////////////
 
+// quitter le programme
 void MainWindow::on_pushButton_clicked()
 {
     close();
@@ -257,6 +270,7 @@ void MainWindow::on_pushButton_clicked()
  *
  */
 
+// charger les rayons
 void MainWindow::loadRayons()
 {
     qDebug()<<"MainWindow::loadRayons()";
@@ -280,6 +294,7 @@ void MainWindow::loadRayons()
 
 }
 
+// charger les catégories pour le rayon
 void MainWindow::loadCategories()
 {
     qDebug()<<"MainWindow::loadCategories()";
@@ -306,6 +321,7 @@ void MainWindow::loadCategories()
 
 }
 
+// charger les produits pour la catégorie
 void MainWindow::loadProducts()
 {
     qDebug()<<"MainWindow::loadProducts()";
@@ -337,8 +353,7 @@ void MainWindow::loadProducts()
     }
 }
 
-
-
+// lors d'un click sur la liste des rayons, charger les catégories
 void MainWindow::on_tableWidgetRayonList_cellClicked(int row, int column)
 {
     qDebug()<<"MainWindow::on_tableWidgetRayonList_cellClicked(int row, int column)";
@@ -346,6 +361,7 @@ void MainWindow::on_tableWidgetRayonList_cellClicked(int row, int column)
     loadCategories();
 }
 
+// lors d'un click sur la liste des catégories, charger les produits
 void MainWindow::on_tableWidgetCategoryList_cellClicked(int row, int column)
 {
     qDebug()<<"MainWindow::on_tableWidgetCategoryList_cellClicked(int row, int column)";
@@ -354,6 +370,7 @@ void MainWindow::on_tableWidgetCategoryList_cellClicked(int row, int column)
 
 }
 
+// créer un nouveau rayon et l'ajouter dans la liste
 void MainWindow::on_pushButtonCreateRayon_clicked()
 {
     qDebug()<<"MainWindow::on_pushButtonCreateRayon_clicked()";
@@ -383,6 +400,7 @@ void MainWindow::on_pushButtonCreateRayon_clicked()
         }
 }
 
+// créer une catégorie et l'ajouter dans liste
 void MainWindow::on_pushButtonAddCategory_clicked()
 {
     qDebug()<<"MainWindow::on_pushButtonAddCategory_clicked()";
@@ -415,6 +433,7 @@ void MainWindow::on_pushButtonAddCategory_clicked()
     } else { ui->labelErrorMessage->setText("Firstly, it necessary to select the shelf"); }
 }
 
+// ajouter un nouveau produit dans le catalogue
 void MainWindow::on_pushButtonAddProduct_clicked()
 {
     qDebug()<<"MainWindow::on_pushButtonAddProduct_clicked()";
@@ -478,20 +497,14 @@ void MainWindow::on_pushButtonAddProduct_clicked()
  *
  */
 
-void MainWindow::loadProductionBatches(QString sort){
+// charger les lots
+void MainWindow::loadProductionBatches(){
     qDebug()<<"MainWindow::loadProductionBatches()";
     QSqlQuery query;
     QString texte="select p.libelle,l.quantite,l.prixUnitaire,l.dateRecolte,CONCAT(u.nom,u.prenom) as producteur,l.idLot ";
             texte+=" from utilisateur u ";
             texte+="inner join lot l on u.idUtilisateur=l.idUtilisateur ";
-            texte+="inner join produit p on l.idProduit=p.idProduit ";
-    if(sort=="Accepted"){
-        texte+="where verifie=1;";
-   } else { if(sort=="Waiting") {
-                texte+="where verifie=0";
-                }
-                texte+=";";
-            }
+            texte+="inner join produit p on l.idProduit=p.idProduit ;";
     qDebug()<<texte;
     query.exec(texte);
     int noLigne=0;
@@ -521,6 +534,7 @@ void MainWindow::loadProductionBatches(QString sort){
     }
 }
 
+// charger les information pour le lot choisi
 void MainWindow::loadBatchInformation(){
     qDebug()<<"MainWindow::loadBatchInformation()";
     QSqlQuery query;
@@ -545,6 +559,7 @@ void MainWindow::loadBatchInformation(){
     }
 }
 
+// lors d'un click sur la liste des lots, afficher les informations
 void MainWindow::on_tableWidgetListOfBatchPropositions_cellClicked(int row, int column)
 {
     qDebug()<<"MainWindow::on_tableWidgetListOfBatchPropositions_cellClicked(int row, int column)";
@@ -553,44 +568,7 @@ void MainWindow::on_tableWidgetListOfBatchPropositions_cellClicked(int row, int 
     loadBatchInformation();
 }
 
-void MainWindow::on_pushButtonAcceptBatch_clicked()
-{
-    qDebug()<<"MainWindow::on_pushButtonAcceptBatch_clicked()";
-    QSqlQuery query;
-    QString texte = "update lot set verifie=1 where idLot="+idLot+";";
-    query.exec(texte);
-    qDebug()<<texte;
 
-}
-
-
-void MainWindow::on_pushButtonRefuseBatch_clicked()
-{
-    qDebug()<<"MainWindow::on_pushButtonRefuseBatch_clicked()";
-    QSqlQuery query;
-    QString texte = "delete from lot where idLot="+idLot+" and verifie=0;";
-    qDebug()<<texte;
-    bool res=query.exec(texte);
-
-    // à finir
-    if(res==true)
-    {
-        //ui->labelActionMessage->setText(tr());
-        ui->labelActionMessage->setText("Selected production batch has been removed");
-
-    } else {
-        ui->labelActionMessage->setText("Accepted production batch can't be removed");
-
-    }
-}
-
-void MainWindow::on_comboBoxSortBatch_activated(const QString &arg1)
-{
-    qDebug()<<"MainWindow::on_comboBox_activated(const QString &arg1)";
-    QString sortList = ui->comboBoxSortBatch->currentText();
-    qDebug()<<sortList;
-    loadProductionBatches(sortList);
-}
 
 //////////////// fin d'onglet lot ////////////////////
 
@@ -600,6 +578,8 @@ void MainWindow::on_comboBoxSortBatch_activated(const QString &arg1)
  *
  */
 
+
+// charger les propositions des nouveaux produits
 void MainWindow::loadNewProducts() {
     qDebug()<<"MainWindow::loadNewProducts()";
     QSqlQuery query("select libelle,idProduit from produit where accepte = 0;");
@@ -619,7 +599,7 @@ void MainWindow::loadNewProducts() {
 
 }
 
-// charge tous les produits de la catalogue
+// charger tous les produits de la catalogue
 void  MainWindow::loadAllProducts() {
     qDebug()<<"MainWindow::loadAllProducts()";
     QSqlQuery query("select libelle as nom_produit,idProduit from produit where accepte=1;");
@@ -639,6 +619,7 @@ void  MainWindow::loadAllProducts() {
     }
 }
 
+// charger les information concernant de produit
 void MainWindow::loadProductInformation(){
     qDebug()<<"MainWindow::loadProducInformation()";
     QSqlQuery query;
@@ -655,6 +636,7 @@ void MainWindow::loadProductInformation(){
     }
 }
 
+// lors d'un click sur la liste des nouveaux produits, afficher les informations
 void MainWindow::on_tableWidgetProductPropositions_cellClicked(int row, int column)
 {
     qDebug()<<"MainWindow::on_tableWidgetProductPropositions_cellClicked(int row, int column)";
@@ -666,7 +648,7 @@ void MainWindow::on_tableWidgetProductPropositions_cellClicked(int row, int colu
 
 }
 
-
+// pour acceptation des nouveaux produits
 void MainWindow::on_pushButtonAcceptNewProduct_clicked()
 {
     qDebug()<<"MainWindow::on_pushButtonAcceptNewProduct_clicked()";
@@ -678,8 +660,7 @@ void MainWindow::on_pushButtonAcceptNewProduct_clicked()
     loadNewProducts();
 }
 
-
-
+// charger les catégories et mettre les dans combobox
 void MainWindow::loadCategoriesComboBox(){
     qDebug()<<"MainWindow::loadCategoriesComboBox()";
     QString rayon=ui->comboBoxShelf->currentText();
@@ -695,6 +676,7 @@ void MainWindow::loadCategoriesComboBox(){
     }
 }
 
+// lors d'un changement de comboboxde rayon, charger ses catégories
 void MainWindow::on_comboBoxShelf_activated(const QString &arg1)
 {
     qDebug()<<"MainWindow::on_comboBoxShelf_activated(const QString &arg1)";
@@ -702,7 +684,8 @@ void MainWindow::on_comboBoxShelf_activated(const QString &arg1)
     loadCategoriesComboBox();
 }
 
-void MainWindow::on_pushButtonSaveBatch_clicked()
+// enregistrer les modfication de rayon/catégories
+void MainWindow::on_pushButtonSaveProduct_clicked()
 {
     qDebug()<<"MainWindow::on_pushButtonSaveBatch_clicked()";
     QSqlQuery query;
@@ -720,6 +703,7 @@ void MainWindow::on_pushButtonSaveBatch_clicked()
     ui->labelActionMessage->setText(tr("The category of product has been changed"));
 }
 
+// lors du click charger les rayons et catégories afin de donner le pouvoir de les modifier
 void MainWindow::on_pushButtonModifyNewProduct_clicked()
 {
     QSqlQuery query("select libelle,idRayon from rayon;");

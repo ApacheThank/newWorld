@@ -93,7 +93,7 @@ public:
      * @brief loadProductionBatch
      * load all production batches from database
      */
-    void loadProductionBatches(QString sort);
+    void loadProductionBatches();
     /**
      * @brief loadBatchInformation
      * load all information about clicked batch
@@ -159,25 +159,21 @@ private slots:
 
     void on_tableWidgetListOfBatchPropositions_cellClicked(int row, int column);
 
-    void on_pushButtonAcceptBatch_clicked();
-
-    void on_comboBoxSortBatch_activated(const QString &arg1);
-
-    void on_pushButtonRefuseBatch_clicked();
-
     void on_pushButtonAcceptNewProduct_clicked();
 
     void on_tableWidgetProductPropositions_cellClicked(int row, int column);
 
     void on_comboBoxShelf_activated(const QString &arg1);
 
-    void on_pushButtonSaveBatch_clicked();
+    void on_pushButtonSaveProduct_clicked();
 
     void on_pushButtonModifyNewProduct_clicked();
 
     void on_tableWidgetListProducers_cellClicked(int row, int column);
 
     void on_pushButtonAcceptVisit_clicked();
+
+    void on_tableWidgetListControllers_itemChanged(QTableWidgetItem *item);
 
 private:
     Ui::MainWindow *ui;

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>893</width>
-    <height>534</height>
+    <width>1012</width>
+    <height>707</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -58,20 +58,20 @@
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="comboBox_2">
+             <widget class="QComboBox" name="comboBoxSort">
               <item>
                <property name="text">
-                <string/>
+                <string>All</string>
                </property>
               </item>
               <item>
                <property name="text">
-                <string>To control</string>
+                <string>Accepted</string>
                </property>
               </item>
               <item>
                <property name="text">
-                <string>To valid</string>
+                <string>Waiting</string>
                </property>
               </item>
              </widget>
@@ -79,43 +79,7 @@
            </layout>
           </item>
           <item>
-           <widget class="QTableWidget" name="tableWidgetListProducers">
-            <column>
-             <property name="text">
-              <string>Nom</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Prenom</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Rue</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Ville</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Code postal</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Tel</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Dernière visite</string>
-             </property>
-            </column>
-           </widget>
+           <widget class="QTableWidget" name="tableWidgetListProducers"/>
           </item>
           <item>
            <spacer name="horizontalSpacer_5">
@@ -164,6 +128,13 @@
              </widget>
             </item>
            </layout>
+          </item>
+          <item>
+           <widget class="QLabel" name="labelActionMessage">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
           </item>
           <item>
            <spacer name="horizontalSpacer_3">
@@ -218,7 +189,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>893</width>
+     <width>1012</width>
      <height>27</height>
     </rect>
    </property>

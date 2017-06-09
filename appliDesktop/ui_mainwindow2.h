@@ -40,7 +40,7 @@ public:
     QLabel *labelProducteurs_2;
     QSpacerItem *horizontalSpacer_9;
     QLabel *labelSort;
-    QComboBox *comboBox_2;
+    QComboBox *comboBoxSort;
     QTableWidget *tableWidgetListProducers;
     QSpacerItem *horizontalSpacer_5;
     QVBoxLayout *verticalLayout_3;
@@ -48,6 +48,7 @@ public:
     QSpacerItem *horizontalSpacer_2;
     QPushButton *pushButtonValidProducer;
     QPushButton *pushButtonRefuseProducer;
+    QLabel *labelActionMessage;
     QSpacerItem *horizontalSpacer_3;
     QHBoxLayout *horizontalLayout_8;
     QHBoxLayout *horizontalLayout;
@@ -60,7 +61,7 @@ public:
     {
         if (MainWindow2->objectName().isEmpty())
             MainWindow2->setObjectName(QStringLiteral("MainWindow2"));
-        MainWindow2->resize(893, 534);
+        MainWindow2->resize(1012, 707);
         centralwidget = new QWidget(MainWindow2);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         verticalLayout_5 = new QVBoxLayout(centralwidget);
@@ -92,31 +93,15 @@ public:
 
         horizontalLayout_10->addWidget(labelSort);
 
-        comboBox_2 = new QComboBox(centralwidget);
-        comboBox_2->setObjectName(QStringLiteral("comboBox_2"));
+        comboBoxSort = new QComboBox(centralwidget);
+        comboBoxSort->setObjectName(QStringLiteral("comboBoxSort"));
 
-        horizontalLayout_10->addWidget(comboBox_2);
+        horizontalLayout_10->addWidget(comboBoxSort);
 
 
         verticalLayout_4->addLayout(horizontalLayout_10);
 
         tableWidgetListProducers = new QTableWidget(centralwidget);
-        if (tableWidgetListProducers->columnCount() < 7)
-            tableWidgetListProducers->setColumnCount(7);
-        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
-        tableWidgetListProducers->setHorizontalHeaderItem(0, __qtablewidgetitem);
-        QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
-        tableWidgetListProducers->setHorizontalHeaderItem(1, __qtablewidgetitem1);
-        QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
-        tableWidgetListProducers->setHorizontalHeaderItem(2, __qtablewidgetitem2);
-        QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
-        tableWidgetListProducers->setHorizontalHeaderItem(3, __qtablewidgetitem3);
-        QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
-        tableWidgetListProducers->setHorizontalHeaderItem(4, __qtablewidgetitem4);
-        QTableWidgetItem *__qtablewidgetitem5 = new QTableWidgetItem();
-        tableWidgetListProducers->setHorizontalHeaderItem(5, __qtablewidgetitem5);
-        QTableWidgetItem *__qtablewidgetitem6 = new QTableWidgetItem();
-        tableWidgetListProducers->setHorizontalHeaderItem(6, __qtablewidgetitem6);
         tableWidgetListProducers->setObjectName(QStringLiteral("tableWidgetListProducers"));
 
         verticalLayout_4->addWidget(tableWidgetListProducers);
@@ -148,6 +133,11 @@ public:
 
 
         verticalLayout_3->addLayout(horizontalLayout_7);
+
+        labelActionMessage = new QLabel(centralwidget);
+        labelActionMessage->setObjectName(QStringLiteral("labelActionMessage"));
+
+        verticalLayout_3->addWidget(labelActionMessage);
 
         horizontalSpacer_3 = new QSpacerItem(448, 13, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -184,7 +174,7 @@ public:
         MainWindow2->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow2);
         menubar->setObjectName(QStringLiteral("menubar"));
-        menubar->setGeometry(QRect(0, 0, 893, 27));
+        menubar->setGeometry(QRect(0, 0, 1012, 27));
         MainWindow2->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow2);
         statusbar->setObjectName(QStringLiteral("statusbar"));
@@ -200,28 +190,15 @@ public:
         MainWindow2->setWindowTitle(QApplication::translate("MainWindow2", "Control", 0));
         labelProducteurs_2->setText(QApplication::translate("MainWindow2", "Producers", 0));
         labelSort->setText(QApplication::translate("MainWindow2", "Sort", 0));
-        comboBox_2->clear();
-        comboBox_2->insertItems(0, QStringList()
-         << QString()
-         << QApplication::translate("MainWindow2", "To control", 0)
-         << QApplication::translate("MainWindow2", "To valid", 0)
+        comboBoxSort->clear();
+        comboBoxSort->insertItems(0, QStringList()
+         << QApplication::translate("MainWindow2", "All", 0)
+         << QApplication::translate("MainWindow2", "Accepted", 0)
+         << QApplication::translate("MainWindow2", "Waiting", 0)
         );
-        QTableWidgetItem *___qtablewidgetitem = tableWidgetListProducers->horizontalHeaderItem(0);
-        ___qtablewidgetitem->setText(QApplication::translate("MainWindow2", "Nom", 0));
-        QTableWidgetItem *___qtablewidgetitem1 = tableWidgetListProducers->horizontalHeaderItem(1);
-        ___qtablewidgetitem1->setText(QApplication::translate("MainWindow2", "Prenom", 0));
-        QTableWidgetItem *___qtablewidgetitem2 = tableWidgetListProducers->horizontalHeaderItem(2);
-        ___qtablewidgetitem2->setText(QApplication::translate("MainWindow2", "Rue", 0));
-        QTableWidgetItem *___qtablewidgetitem3 = tableWidgetListProducers->horizontalHeaderItem(3);
-        ___qtablewidgetitem3->setText(QApplication::translate("MainWindow2", "Ville", 0));
-        QTableWidgetItem *___qtablewidgetitem4 = tableWidgetListProducers->horizontalHeaderItem(4);
-        ___qtablewidgetitem4->setText(QApplication::translate("MainWindow2", "Code postal", 0));
-        QTableWidgetItem *___qtablewidgetitem5 = tableWidgetListProducers->horizontalHeaderItem(5);
-        ___qtablewidgetitem5->setText(QApplication::translate("MainWindow2", "Tel", 0));
-        QTableWidgetItem *___qtablewidgetitem6 = tableWidgetListProducers->horizontalHeaderItem(6);
-        ___qtablewidgetitem6->setText(QApplication::translate("MainWindow2", "Derni\303\250re visite", 0));
         pushButtonValidProducer->setText(QApplication::translate("MainWindow2", "Valid", 0));
         pushButtonRefuseProducer->setText(QApplication::translate("MainWindow2", "Refuse", 0));
+        labelActionMessage->setText(QString());
         pushButtonExit->setText(QApplication::translate("MainWindow2", "Exit", 0));
     } // retranslateUi
 
