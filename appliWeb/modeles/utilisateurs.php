@@ -24,7 +24,7 @@ function smtpmailer($to,$sujet,$message,$entete){
 	$mail->Host='smtp.gmail.com';
 	$mail->Port=465;
 	$mail->Username='apachethank@gmail.com';
-	$mail->Password='JaMaS003'; //ton mdp gmail
+	$mail->Password='****'; //ton mdp gmail
 	$mail->SetFrom('apachethank@gmail.com');
 	$mail->AddReplyTo('apachethank@gmail.com');
 	$mail->CharSet="utf-8";
