@@ -6,11 +6,8 @@ if (utilisateur_est_connecte()) {
 	<?php
 } else {
 ?>
-  <div class="row">
-<div class="col-md-5 col-xs-offset-3">
-
 	<!--Carousel Wrapper-->
-<div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
+<div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel" width="720px" height="580px">
     <!--Indicators-->
     <ol class="carousel-indicators">
         <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
@@ -49,8 +46,7 @@ if (utilisateur_est_connecte()) {
     <!--/.Controls-->
 </div>
 <!--/.Carousel Wrapper-->
-</div>
-</div>
+
 <?php	
 }
 ?>

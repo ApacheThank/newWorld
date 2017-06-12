@@ -34,6 +34,7 @@ $aLogIn="Log in";
 $aLogOut="Log out";
 $aAccount="My account";
 $aDeclarePoint="Declare my point";
+$aMyBatch="My batches";
 ////////////////////////////////////////////
 
  /*
@@ -146,7 +147,7 @@ $labelSelectProduct = "Select product";
 $labelIfYouNotFind ="If you don't find your product in the list, you can add your own";
 $valueNewProduct = "New product";
 $errorQuantity1="Enter the quantity of product";
-$errorQuantity2="The quantity can't shave the caracters";
+$errorQuantity2="The quantity can't have the caracters";
 $errorHarvestDate1="Enter the date of harvest";
 $errorHarvestDate2="Date form invalid, it must be YYYY-mm-dd";
 $errorPreservationLength1 = "Enter the length of preservation";
@@ -156,8 +157,8 @@ $errorSalesUnit2 = "Enter the number of unit sale";
 $errorProductionMode1 = "Enter the production mode";
 $errorProductionMode2 = "The production mode can have only the characters";
 $errorUnitPrice1 = "Enter the unit price";
-$errorUnitPrice2= "The unit price has the caracters or more than 2 digits after dot";
-$labelMessageSuccesfullyDeclaredBatch ="Batch declaration has been successfully completed, you will receive an email when your batch will be validated";
+$errorUnitPrice2= "The unit price has the characters and/or more than 2 digits after dot";
+$labelMessageSuccesfullyDeclaredBatch ="Batch declaration has been successfully completed, your batch will appear in catalogue";
 
 /**
   * Translation for inscription_effectue
@@ -220,6 +221,7 @@ $errorCompanyName2 = "The company name can't have only english characters";
 $errorActivity1 = "Enter the activity of company";
 $errorActivity2 ="The activity can't have the characters"; 
 $errorPointAddressExists = "This point of sale is already exists";
+$labelMessageNecessaryConnection2="You must be connected before to declare your point of sale";
 
 
 /**
@@ -232,7 +234,19 @@ $errorProductName2 = "Product name can't have the characters";
 $product = "Product: ";
 $errorProductExists1 = " is already exists in the catégorie ";
 $errorProductExists2 = " of the shelf ";
+$labelProducAdded ="Your product has been added, you will receive an email when your product will be accepted";
+
+/**
+  * Translation for afficher_panier
+  */
+$total="Total";
+$labelContinueShopping="Continue Shopping";
+$labelEmptyCart = "Your shopping cart is empty";
 
 
+/**
+  * Translation for lot_propose
+  */
+$labelBatchesProposed= "My batches propositions";
 
 ?>

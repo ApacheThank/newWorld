@@ -3,6 +3,7 @@ include CHEMIN_LIB.'db.php';
 $declaration_point_effectue = false;
 if(!mysqli_connect_errno())
 {
+
   if(utilisateur_est_connecte())
   {
 
@@ -82,11 +83,13 @@ if(!mysqli_connect_errno())
 
   } else 
   {
-	echo "<div class='col-md-5 col-xs-offset'>";
+    echo "<div class='row'>";
 	echo "<div class='alert alert-info'>";
-	echo "<strong>Info!</strong>$labelMessageNecessaryConnection";
-	echo "</div></div>";
+	echo "<strong>Info!</strong>$labelMessageNecessaryConnection2";
+	echo "</div>";
 	include CHEMIN_CONTROLEUR.'connexion.php';
+		echo "</div>";
+
   }	
 
 }
@@ -96,3 +99,4 @@ else // we can't connect to database
 
 }
 ?>
+

@@ -1,8 +1,5 @@
-
-
 <?php
 
-include CHEMIN_LIB.'db.php';
 // on charge les rayons et leurs catégories 
 include_once CHEMIN_VUE.'formulaire_charger_produits.php';
 $formulaireLot = false;
@@ -102,8 +99,9 @@ if(utilisateur_est_connecte())
 
 } else 
 {  // si non on demande de se connecter
+	echo "<div class='row'>";
 	echo "<div class='col-md-5 col-xs-offset'>";
-	echo "<div class='alert alert-info'>";
+	echo "<div class='alert alert-info'>";	
 	echo "<strong>Info!</strong>$labelMessageNecessaryConnection";
 	echo "</div></div>";
 	include CHEMIN_CONTROLEUR.'connexion.php';

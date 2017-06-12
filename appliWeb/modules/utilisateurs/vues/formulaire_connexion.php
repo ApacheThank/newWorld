@@ -1,4 +1,5 @@
-<div class="row">
+<div class="col-xs-3">
+</div>
 <div class="col-md-5 col-xs-offset">
 <!--Naked Form-->
 <div class="card-block">

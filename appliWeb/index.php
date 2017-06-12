@@ -1,12 +1,22 @@
 <?php  session_start();
 // error_reporting(0);  // Suppression warning
 
+
 // Initialisation
 include 'global/init.php';
-
+include 'libs/db.php';
+include_once('libs/messages_en.php');
 // Début de la tamporisation de sortie
 ob_start();
-
+/* for translation the site
+    if ($_GET['langue'] == 'fr') // si la langue est fr on traduit en français
+    {
+        include_once('libs/messages_fr.php');    
+    }
+    else // Langue par défaut (ici anglais)
+    {
+        include_once('libs/messages_en.php');
+    }*/
 // Si un module est specifié, on regarde s'il existe
 if (!empty($_GET['module'])) {
 

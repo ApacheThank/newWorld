@@ -1,6 +1,5 @@
 <?php
 include_once CHEMIN_VUE.'formulaire_charger_produits.php';
-include CHEMIN_LIB.'db.php';
 
 $libCat=strtoupper($_GET['libelle']);
 if(utilisateur_est_connecte())
@@ -40,7 +39,12 @@ if(utilisateur_est_connecte())
 			$res = $db_con->prepare($sql);
 			$res->execute();
 			$formulaire_ajout = true;
-			echo "Votre produit a été ajouté!";
+				echo "<div class='col-md-5 col-xs-offset'><div class='alert alert-success'>";
+			echo $labelProducAdded;
+			echo "</div>";
+			echo "</div>";
+			echo "</div>";
+
 
 		} else { // si non on affiche les erreurs
 			foreach($err AS $error)

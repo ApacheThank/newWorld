@@ -2,6 +2,7 @@
 // Vérification des droits d'accès de la page
 
 include CHEMIN_LIB.'db.php';
+	echo "<div class='row'>";
 
 $connected = false;
 if(isset($_POST['connect']))
@@ -43,6 +44,7 @@ if(isset($_POST['connect']))
 }
 if ($connected != 1)
 {
+	
  include CHEMIN_VUE.'formulaire_connexion.php';
 }
 

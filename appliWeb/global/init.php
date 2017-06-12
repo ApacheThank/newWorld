@@ -1,7 +1,7 @@
 ﻿<?php
 // Inclusion du fichier de configuration (qui définit des constantes)
 include 'global/config.php';
-include 'libs/messages_en.php';
+//include 'libs/messages_en.php';
 // Désactivation des guillemets magiques
 ini_set('magic_quotes_runtime', 0);
 // set_magic_quotes_runtime(0);

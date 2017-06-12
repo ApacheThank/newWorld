@@ -1,4 +1,4 @@
-<?php include CHEMIN_LIB.'messages_en.php';?>
+<?php //include CHEMIN_LIB.'messages_en.php';?>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -22,6 +22,7 @@ switch ($type_user) {
 				</div>
 				<div id='navbar' class='navbar-collapse collapse'>
 					<form class='navbar-form navbar-right'>
+					<a href='index.php?module=utilisateurs&amp;action=afficher_panier'><img src='images/panier2.png'></a>
 					<form class='form-inline waves-effect waves-light'>
 						<input class='form-control' type='text' placeholder='Search'>     
 						<a href='index.php?module=utilisateurs&amp;action=deconnexion' class='btn btn-primary'>$aLogOut</a>
@@ -30,9 +31,10 @@ switch ($type_user) {
 				</div>";
 			break;
 
-/*produceur*/   case 2 : 	
+/*producteur*/   case 2 : 	
 			echo 	"<a class='navbar-brand' href='index.php?module=utilisateurs&amp;action=afficher_profil&amp;id=$id_utilisateur'>$aAccount</a>
 					<a class='navbar-brand' href='index.php?module=utilisateurs&amp;action=declaration_produit&amp;id=$id_utilisateur'>$aProduce</a>
+					<a class='navbar-brand' href='index.php?module=utilisateurs&amp;action=lot_propose&amp;id=$id_utilisateur'>$aMyBatch</a>
 				</div>
 				<div id='navbar' class='navbar-collapse collapse'>
 					<form class='navbar-form navbar-right'>
@@ -72,11 +74,13 @@ switch ($type_user) {
 else { // si l'utilisateur n'est pas connecté			
 			echo "	<a class='navbar-brand' href='index.php?module=utilisateurs&amp;action=afficher_produits'>$aBuy</a>
 					<a class='navbar-brand' href='index.php?module=utilisateurs&amp;action=declaration_produit'>$aProduce</a>
-					<a class='navbar-brand' href='index.php?module=utilisateurs&amp;action=afficher'>$aDistribute</a>
+					<a class='navbar-brand' href='index.php?module=utilisateurs&amp;action=declarer_point_vente'>$aDistribute</a>
 					<a class='navbar-brand' href='index.php?module=utilisateurs&amp;action=afficher_contact'>$aContact</a>
 				</div>
 				<div id='navbar' class='navbar-collapse collapse'>
 					<form class='navbar-form navbar-right'>
+					<a href='index.php?module=utilisateurs&amp;action=afficher_panier'><img src='images/panier2.png'></a>
+
 					<form class='form-inline waves-effect waves-light'>
 						<input class='form-control' type='text' placeholder='Search'>     
 						<a href='index.php?module=utilisateurs&amp;action=connexion' class='btn btn-success'>$aLogIn</a>	
