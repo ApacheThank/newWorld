@@ -33,7 +33,11 @@ function smtpmailer($to,$sujet,$message,$entete){
 	$mail->AddAddress($to);
                  
 	if(!$mail->Send()){
+<<<<<<< HEAD:appliWeb/modeles/utilisateurs.php
 		echo "E-mail didn't sent";
+=======
+		echo "E-mail dindn't sent";
+>>>>>>> 8aefc88aad7829cffc2c29f486851f49e683e156:appliWeb/utilisateurs.php
 		echo 'Mailer error:'.$mail->Errorinfo;
 	}else{
 		echo 'Message sent';
